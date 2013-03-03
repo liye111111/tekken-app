@@ -70,7 +70,7 @@ public class SavePage {
     // 模版
     String                      template;
 
-    boolean                     onlyIndex         = true;
+    boolean                     onlyIndex         = false;
     // 翻译表
     final Map<String, Language> jpLanMap;
 

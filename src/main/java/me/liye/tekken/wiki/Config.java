@@ -12,9 +12,13 @@ import java.util.Properties;
  */
 public class Config {
 
-    private static final String DEF_DBFILE = "/Users/liye/mywork/tekken-app/src/main/resources/tekken.sqlite";
     private static final String KEY_DBFILE = "dbFile";
+
+    private static final String DEF_DBFILE = "/Users/liye/mywork/tekken-app/src/main/resources/tekken.sqlite";
+
     public static String        dbFile;
+    // public static boolean onlyIndex;
+
     static {
         File cfg = new File(System.getProperty("user.home"), "tekken-app.properties");
         Properties p = new Properties();
