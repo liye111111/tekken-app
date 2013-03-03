@@ -116,7 +116,7 @@ public class SavePage {
             if (i % INDEX_COLUMN_SIZE == 0) {
                 sb.append("</tr><tr>");
             }
-            sb.append("<td><a href=\"" + c + "/index.htm\"><img src=\"img/" + c + ".png\"><br/>" + c + "</td>");
+            sb.append("<td><a href=\"" + c + "/index.htm\"><img src=\"/img/" + c + ".png\"><br/>" + c + "</td>");
             sb.append("\r\n");
             i++;
         }
