@@ -1,0 +1,26 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'war'
+apply plugin: 'jetty'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+   compile 'org.apache.httpcomponents:httpclient:4.2'
+   compile 'commons-httpclient:commons-httpclient:3.1'
+   compile 'net.sourceforge.nekohtml:nekohtml:1.9.17'
+   compile 'log4j:log4j:1.2.17'
+   compile 'org.xerial:sqlite-jdbc:3.7.2'
+   compile 'commons-lang:commons-lang:2.6'
+   compile 'commons-io:commons-io:2.4'    
+   testCompile 'junit:junit:4.7' 
+}
+
+
+[jettyRun, jettyRunWar]*.with {
+	httpPort=9000
+	reload='automatic'
+	contextPath='/'
+}
