@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import me.liye.tekken.wiki.Config;
 import me.liye.tekken.wiki.doamin.Language;
 
 /*
@@ -20,9 +21,7 @@ public class TKDB extends DB {
     public static TKDB INSTANCE = new TKDB();
 
     private TKDB() {
-        String dbFile = System.getProperty("tekken-app.db",
-                                           "/Users/liye/mywork/tekken-app/src/main/resources/tekken.sqlite");
-        super.open(dbFile);
+        super.open(Config.dbFile);
     }
 
     @Override
