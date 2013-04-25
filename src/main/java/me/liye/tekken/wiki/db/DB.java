@@ -1,6 +1,9 @@
 package me.liye.tekken.wiki.db;
 
 import java.io.File;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
 /*
@@ -62,6 +66,46 @@ public abstract class DB {
         return rs;
     }
 
+    public int insertObject(String tableName, Object obj) throws Exception {
+        // 反射获取字段名
+        Class<? extends Object> clz = obj.getClass();
+        Field[] allFs = clz.getDeclaredFields();
+        List<Field> fsList = new ArrayList();
+        // 去掉 transent
+        for (Field f : allFs) {
+            if (!Modifier.isTransient(f.getModifiers())) {
+                fsList.add(f);
+            }
+        }
+        Field[] fs = fsList.toArray(new Field[0]);
+
+        String[] columns = new String[fs.length];
+        String[] q = new String[fs.length];
+        String[] vals = new String[fs.length];
+
+        for (int i = 0; i < fs.length; i++) {
+            for (Field f : fs) {
+                columns[i] = fs[i].getName();
+                q[i] = "?";
+            }
+        }
+
+        String sql = "".format("insert into %s (%s) values (%s)", tableName, StringUtils.join(columns, ","),
+                               StringUtils.join(q, ","));
+
+        for (int i = 0; i < columns.length; i++) {
+            String col = columns[i];
+            String upperCol = StringUtils.capitalize(col);
+
+            Method m = clz.getMethod("get" + upperCol, null);
+            Object val = m.invoke(obj, null);
+            vals[i] = val == null ? null : val.toString();
+        }
+
+        return insert(sql, vals);
+
+    }
+
     public int insert(String insertSql, String... insertParam) throws SQLException {
         PreparedStatement ps = conn.prepareStatement(insertSql);
         for (int i = 0; i < insertParam.length; i++) {
@@ -74,7 +118,7 @@ public abstract class DB {
 
     public int update(String updateSql, String... updateParam) throws SQLException {
         PreparedStatement ps = conn.prepareStatement(updateSql);
-        for (int i = 0; i < updateParam.length; i++) {
+        for (int i = 0; updateParam != null && i < updateParam.length; i++) {
             ps.setString(i + 1, updateParam[i]);
         }
         int ct = ps.executeUpdate();

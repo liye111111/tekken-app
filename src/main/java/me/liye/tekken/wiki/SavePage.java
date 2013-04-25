@@ -145,7 +145,7 @@ public class SavePage {
         new Spider(href, XP_SKILLNAME).execute(new Executor() {
 
             @Override
-            public void process(Node node) throws Exception {
+            public void process(Node node, int index) throws Exception {
                 // Spider.showNode(node, " ");
                 String skillName = node.getTextContent();
                 Language lan = getLanByJp(skillName);
@@ -174,7 +174,7 @@ public class SavePage {
         new Spider(href, XP_SKILLCONTENT).execute(new Executor() {
 
             @Override
-            public void process(Node node) throws Exception {
+            public void process(Node node, int index2) throws Exception {
                 Node first = null;
 
                 for (int i = 0; i < node.getChildNodes().getLength(); i++) {

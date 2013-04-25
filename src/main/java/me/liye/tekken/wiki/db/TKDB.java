@@ -1,11 +1,13 @@
 package me.liye.tekken.wiki.db;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import me.liye.tekken.wiki.Config;
 import me.liye.tekken.wiki.doamin.Language;
+import me.liye.tekken.wiki.doamin.SkillEntry;
 
 /*
  * @author <a href="mailto:ye.liy@alibaba-inc.com">ye.liy</a>
@@ -44,4 +46,19 @@ public class TKDB extends DB {
 
     }
 
+    public void insertSkillEntry(SkillEntry sk) {
+        try {
+            insertObject("skill", sk);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public int deleteAllSkill() {
+        try {
+            return update("delete from skill", null);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
