@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.liye.tekken.wiki.doamin.SkillEntry;
+import me.liye.tekken.wiki.spider.NodeUtils;
 import me.liye.tekken.wiki.spider.Spider;
 import me.liye.tekken.wiki.spider.Spider.Executor;
 
@@ -35,7 +36,7 @@ public class ExtractEntry {
             @Override
             public void process(Node tr, int index) throws Exception {
                 // 是否有列匹配
-                if (Spider.isHave(tr, xp2)) {
+                if (NodeUtils.isHave(tr, xp2)) {
 
                     Spider sp2 = new Spider(tr, xp2);
 
@@ -51,7 +52,7 @@ public class ExtractEntry {
                         @Override
                         public void process(Node td, int index) throws Exception {
                             // System.out.println(td.getNamespaceURI() + " " + td.getNodeName());
-                            if (Spider.isHave(td, "xhtml:B")) {
+                            if (NodeUtils.isHave(td, "xhtml:B")) {
                                 sk.setIsNew("Y");
                             }
                             // 列

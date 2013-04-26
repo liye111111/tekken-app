@@ -11,7 +11,8 @@ public class SkillEntry {
     String charactor;
     // 分类
     String category;
-
+    // 分组
+    String group;
     // //////////////
 
     // 招名
@@ -30,6 +31,8 @@ public class SkillEntry {
     String f_hit;
     // 帧数 破招
     String f_ch;
+    // 距离
+    String distance;
     // 备注
     String memo;
     // 新技
@@ -139,35 +142,20 @@ public class SkillEntry {
         this.domContent = domContent;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("SkillEntry [charactor=");
-        builder.append(charactor);
-        builder.append(", category=");
-        builder.append(category);
-        builder.append(", name=");
-        builder.append(name);
-        builder.append(", command=");
-        builder.append(command);
-        builder.append(", judge=");
-        builder.append(judge);
-        builder.append(", damage=");
-        builder.append(damage);
-        builder.append(", f_init=");
-        builder.append(f_init);
-        builder.append(", f_block=");
-        builder.append(f_block);
-        builder.append(", f_hit=");
-        builder.append(f_hit);
-        builder.append(", f_ch=");
-        builder.append(f_ch);
-        builder.append(", memo=");
-        builder.append(memo);
-        builder.append(", isNew=");
-        builder.append(isNew);
-        builder.append("]");
-        return builder.toString();
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
+    }
+
+    public String getDistance() {
+        return distance;
+    }
+
+    public void setDistance(String distance) {
+        this.distance = distance;
     }
 
 }

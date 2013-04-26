@@ -90,8 +90,8 @@ public abstract class DB {
             }
         }
 
-        String sql = "".format("insert into %s (%s) values (%s)", tableName, StringUtils.join(columns, ","),
-                               StringUtils.join(q, ","));
+        String sql = "".format("insert into \"%s\" (\"%s\") values (%s)", tableName,
+                               StringUtils.join(columns, "\",\""), StringUtils.join(q, ","));
 
         for (int i = 0; i < columns.length; i++) {
             String col = columns[i];

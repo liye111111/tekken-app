@@ -48,10 +48,6 @@ public class Spider {
         }
     }
 
-    public static boolean isHave(Node node, String xpath) {
-        return new Spider(node, xpath).isHave();
-    }
-
     public Spider(Node node, String xpath) {
         this.xpath = xpath;
         doc = node;
@@ -100,7 +96,9 @@ public class Spider {
             Object result = expr.evaluate(doc, XPathConstants.NODESET);
             NodeList nodes = (NodeList) result;
             for (int i = startLine; i < nodes.getLength(); i++) {
-                exec.process(nodes.item(i), i);
+                if (NodeUtils.isNotBlankNode(nodes.item(i))) {
+                    exec.process(nodes.item(i), i);
+                }
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -126,10 +124,4 @@ public class Spider {
 
     }
 
-    public static void showNode(Node node, String perfix) {
-        System.out.println(perfix + node.getNamespaceURI() + " " + node.getNodeName());
-        for (int i = 0; i < node.getChildNodes().getLength(); i++) {
-            showNode(node.getChildNodes().item(i), perfix + perfix);
-        }
-    }
 }
