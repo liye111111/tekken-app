@@ -31,7 +31,7 @@ public abstract class BlockSkillExtracter implements Executor {
 
     public void init() {
         try {
-            int count = TKDB.INSTANCE.update(getInitSql(), null);
+            int count = TKDB.INSTANCE.update(getInitSql(), (String) null);
             System.out.println("".format("delete %s %s ", getCategory(), count));
         } catch (SQLException e) {
             throw new RuntimeException(e);

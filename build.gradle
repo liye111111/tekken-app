@@ -18,6 +18,10 @@ dependencies {
    testCompile 'junit:junit:4.7' 
 }
 
+tasks.withType(Compile) {
+    options.encoding = "UTF-8"
+}
+
 
 [jettyRun, jettyRunWar]*.with {
 	httpPort=9000

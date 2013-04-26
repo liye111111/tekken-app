@@ -70,7 +70,7 @@ public abstract class DB {
         // 反射获取字段名
         Class<? extends Object> clz = obj.getClass();
         Field[] allFs = clz.getDeclaredFields();
-        List<Field> fsList = new ArrayList();
+        List<Field> fsList = new ArrayList<Field>();
         // 去掉 transent
         for (Field f : allFs) {
             if (!Modifier.isTransient(f.getModifiers())) {
@@ -84,21 +84,18 @@ public abstract class DB {
         String[] vals = new String[fs.length];
 
         for (int i = 0; i < fs.length; i++) {
-            for (Field f : fs) {
-                columns[i] = fs[i].getName();
-                q[i] = "?";
-            }
+            columns[i] = fs[i].getName();
+            q[i] = "?";
         }
 
-        String sql = "".format("insert into \"%s\" (\"%s\") values (%s)", tableName,
-                               StringUtils.join(columns, "\",\""), StringUtils.join(q, ","));
+        String sql = String.format("insert into \"%s\" (\"%s\") values (%s)", tableName,
+                                   StringUtils.join(columns, "\",\""), StringUtils.join(q, ","));
 
         for (int i = 0; i < columns.length; i++) {
             String col = columns[i];
             String upperCol = StringUtils.capitalize(col);
-
-            Method m = clz.getMethod("get" + upperCol, null);
-            Object val = m.invoke(obj, null);
+            Method m = clz.getMethod("get" + upperCol, (Class<String>) null);
+            Object val = m.invoke(obj, (Class<String>) null);
             vals[i] = val == null ? null : val.toString();
         }
 
@@ -127,7 +124,7 @@ public abstract class DB {
     }
 
     public List<Map<String, String>> select(String selectSql, String... queryParam) {
-        List<Map<String, String>> data = new ArrayList();
+        List<Map<String, String>> data = new ArrayList<Map<String, String>>();
         try {
             PreparedStatement ps = conn.prepareStatement(selectSql);
             for (int i = 0; queryParam != null && i < queryParam.length; i++) {
@@ -136,7 +133,7 @@ public abstract class DB {
             ResultSet rs = ps.executeQuery();
             ResultSetMetaData md = rs.getMetaData();
             while (rs.next()) {
-                Map<String, String> row = new HashMap();
+                Map<String, String> row = new HashMap<String, String>();
                 for (int i = 1; i <= md.getColumnCount(); i++) {
                     row.put(md.getColumnName(i), rs.getString(i));
                 }

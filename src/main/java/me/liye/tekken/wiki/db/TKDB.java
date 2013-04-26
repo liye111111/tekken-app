@@ -33,7 +33,7 @@ public class TKDB extends DB {
 
     public Map<String, Language> getJpLanguageMap() {
         List<Map<String, String>> records = select("select * from language");
-        Map<String, Language> result = new HashMap();
+        Map<String, Language> result = new HashMap<String, Language>();
         for (Map<String, String> line : records) {
             Language lan = new Language();
             lan.setCn(line.get("cn"));
@@ -56,7 +56,7 @@ public class TKDB extends DB {
 
     public int deleteAllSkill() {
         try {
-            return update("delete from skill", null);
+            return update("delete from skill", (String) null);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
