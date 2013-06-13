@@ -34,7 +34,18 @@
 <input type="submit" value="execute">
 </form>
 <%
-out.print("hello");
+String action = request.getParameter("action");
+if(null!=action){
+
+String wwwDir = request.getParameter("wwwDir");
+String templateDir = request.getParameter("templateDir");
+String url = request.getParameter("url");
+String type = request.getParameter("type");
+
+BuildSite bs = new BuildSite();
+sp.build(wwwDir,templateDir,url,type);
+}
+
 %>
 
 
