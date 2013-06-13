@@ -16,11 +16,14 @@
 </tr>
 <tr>
 <td>url</td>
-<td><input name="url" size="100"></td>
+<td><input name="url" size="100">
 <span class="memo" style="font:50%">
 <br>TT2:http://wiki.livedoor.jp/inatekken/d/%c1%ed%b9%e7TUD
 <br>BR:http://wiki.livedoor.jp/inatekken/d/%c1%ed%b9%e7TBR
 </span>
+
+</td>
+
 </tr>
 <tr>
 <td>type</td>
