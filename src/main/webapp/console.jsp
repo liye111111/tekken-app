@@ -33,8 +33,6 @@
 </table>
 <input type="submit" value="execute">
 </form>
-
-
 <%
 String action = request.getParameter("action");
 if(null!=action){
