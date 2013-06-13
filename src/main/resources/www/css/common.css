@@ -1,0 +1,3838 @@
+@charset "EUC-JP";
+/* ----------------------------------------------------------------------------------------------------------------
+　概要：テンプレート共通CSS
+　制作日：2008/09/08
+　更新日：2008/10/29
+
+* reset
+		tagについている設定を解除
+* parts
+		使い回すパーツ
+* layout
+		レイアウト
+* common-header
+* common-footer
+* wiki-header
+* wiki-menu
+* maincolumn
+* sidecolumn
+		#sub、#extra
+* google adsense
+		アドセンス
+* tagcloud
+		タグクラウドの指定
+* clear
+		clearfix
+
+更新情報：
+08/10/29　clearfixを修正（IE向け）、デフォルトの検索boxを修正
+08/12/16　pre、AAの指定を修正
+08/12/16　画像提供テンプレのバナーを追加
+
+---------------------------------------------------------------------------------------- */
+
+/* reset
+---------------------------------------------------------------------------------------- */
+body,div,h1,h2,h3,h4,h5,h6,p,blockquote,pre,table,th,tr,td,dl,dt,dd,form,fieldset,legend,hr,span,a,img,strong,em,ins,del,cite,abbr,acronym,sup,sub,dfn,code,var,samp,kbd {
+	margin:0;
+	padding:0;
+}
+body{
+	margin:10;
+	padding:0;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-size:100%;
+	zoom:1;
+}
+div {
+	zoom:1;
+}
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+fieldset,img {
+	border:0;
+}
+q:before,q:after {
+	content:'';
+}
+
+/* 印刷関連の指定
+---------------------------------------------------------------------------------------- */
+/* 印刷では反映されない指定 */
+@media screen {
+body.layout-2 div#main,
+body.layout-2 div#sub,
+body.layout-2 div#extra {
+	overflow:hidden;
+}
+
+body.layout-2-r div#main,
+body.layout-2-r div#sub,
+body.layout-2-r div#extra {
+	overflow:hidden;
+}
+
+body.layout-3-r div#main,
+body.layout-3-r div#sub,
+body.layout-3-r div#extra {
+	overflow:hidden;
+}
+}
+
+/* 印刷で反映される指定 */
+@media print {
+div#common-footer,
+div#common-header {
+	display:none;
+}
+}
+
+/* parts -- 共通パーツ
+---------------------------------------------------------------------------------------- */
+div#wiki-header img,
+div#wiki-menu img,
+div#common-header img,
+div#common-footer img,
+div#page-header img,
+div#page-footer img,
+div.sidecolumn img {
+	vertical-align:bottom;
+}
+
+ul.tool-list {
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+ul.tool-list li {
+	display:inline;
+	margin-left:2px;
+}
+ul.tool-list li img {
+	margin:0;
+	vertical-align:middle;
+}
+
+/* layout -- レイアウト
+---------------------------------------------------------------------------------------- */
+div#container {
+	text-align:center;
+}
+
+/* ネガティブマージン?アンカー対策 */
+div#main {
+	zoom:1;
+}
+
+/* 2colum     | sub+extra | main |
+-------------------------------------------------------- */
+body.layout-2 {}
+body.layout-2 div#main {
+	float:right;
+	display:inline;
+	width:100%;
+	margin:0 0 0 -200px;
+}
+body.layout-2 div#main div.column-inner {
+	margin:0 0 0 210px;
+}
+body.layout-2 div#sub {
+	float:left;
+	display:inline;
+	width:200px;
+}
+body.layout-2 div#extra {
+	clear:left;
+	float:left;
+	display:inline;
+	width:200px;
+}
+
+/* 2colum right     | main | sub+extra |
+-------------------------------------------------------- */
+body.layout-2-r {}
+body.layout-2-r div#main {
+	float:left;
+	display:inline;
+	width:100%;
+	margin:0 -200px 0 0;
+}
+body.layout-2-r div#main div.column-inner {
+	margin:0 210px 0 0;
+}
+body.layout-2-r div#sub {
+	float:right;
+	display:inline;
+	width:200px;
+}
+body.layout-2-r div#extra {
+	clear:right;
+	float:right;
+	display:inline;
+	width:200px;
+}
+
+/* 3colum     | sub | main | extra |
+-------------------------------------------------------- */
+body.layout-3 {}
+body.layout-3 div#main {
+	float:right;
+	width:100%;
+	margin-left:-99%;
+}
+body.layout-3 div#main div.column-inner {
+	margin:0 210px 0 260px;
+}
+body.layout-3 div#sub {
+	float:left;
+	width:250px;
+}
+body.layout-3 div#extra {
+	float:right;
+	width:200px;
+	display:inline;
+	margin-right:-1%;
+}
+
+/* 3colum right     | main | sub | extra |
+-------------------------------------------------------- */
+body.layout-3-r {}
+body.layout-3-r div#main {
+	float:left;
+	display:inline;
+	width:100%;
+	margin:0 0 0 -460px;
+}
+body.layout-3-r div#main div.column-inner {
+	margin:0 10px 0 460px;
+}
+body.layout-3-r div#sub {
+	float:left;
+	display:inline;
+	width:260px;
+}
+body.layout-3-r div#sub div.column-inner {
+	margin:0 10px 0 0;
+}
+body.layout-3-r div#extra {
+	float:left;
+	width:200px;
+	display:inline;
+}
+
+/* side column - off
+-------------------------------------------------------- */
+div.side-off {}
+div.side-off div#main {
+	float:none!important;
+	display:block!important;
+	width:auto!important;
+	margin:0 auto!important;
+}
+div.side-off div#main div.column-inner {
+	width:auto!important;
+	margin:0!important;
+}
+
+/* common-header -- 共通ヘッダ
+---------------------------------------------------------------------------------------- */
+
+/* 固定ヘッダ
+------------------------------- */
+body {
+	padding-top:30px!important;
+}
+div#common-header {
+	text-align:left!important;
+	font-size:12px!important;
+	line-height:1.35!important;
+	letter-spacing:0!important;
+	color:#000!important;
+	font-family:'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','ＭＳ Ｐゴシック',Helvetica,sans-serif!important;
+	height:30px!important;
+	width:100%!important;
+	padding:0!important;
+	position:fixed!important;
+	position:absolute;   /* IE6 */
+	top:0;
+	left:0;
+	z-index:999;
+	zoom:1;
+	min-width:950px;
+}
+div#common-header ul {
+	list-style:none!important;
+	padding:0!important;
+	margin:0!important;
+}
+div#common-header div.header-tool {
+	float:left;
+}
+div#common-header ul#logo {
+	position:absolute;
+	top:0;
+	left:10px;
+}
+div#common-header ul#logo li {
+	float:left;
+	display:inline;
+}
+ul#navigation-h {
+	position:absolute;
+	top:0;
+	left:180px;
+}
+div#common-header p#pr-header {
+	display:block;
+	float:right;
+	text-align:right;
+	padding:5px 10px 5px 15px;
+}
+div#common-header p#pr-header a img {
+	width:0;
+	height:0;
+}
+div#common-header p#pr-header a {
+	display: block;
+	width:100px;
+	height:20px;
+}
+div#common-header p#pr-header a:hover {
+}
+
+div#common-header p#mypage {
+	display:block;
+	float:right;
+	height:30px;
+}
+div#common-header p#mypage a {
+	color:#333;
+	display:block;
+	float:none !important;
+	height:auto !important;
+	padding:8px 10px 5px 29px;
+	text-decoration:none;
+}
+div#common-header p#mypage a:hover {
+	
+}
+div#common-header p#wiki-status span {
+	display:block;
+	padding:8px 0 5px 23px;
+}
+div#common-header p#wiki-status span.owner {
+	
+}
+div#common-header p#wiki-status span.id {
+	
+}
+div#common-header p#wiki-status span.member {
+	
+}
+div#common-header p#wiki-status span.all {
+	
+}
+
+
+/* #navigation-h 
+------------------------------- */
+/* Root = Horizontal, Secondary = Vertical */
+ul#navigation-h {
+	width: 600px; /*For KHTML*/
+	height:30px;
+	
+}
+
+ul#navigation-h li {
+	float: left; /*For Gecko*/
+	display:inline;
+	position: relative;
+	height:30px;
+	
+}
+ul#navigation-h a {
+	float: none !important; /*For Opera*/
+	float: left; /*For IE*/
+	display: block;
+	height: auto !important;
+	height: 1%; /*For IE*/
+	padding:8px 10px 5px 26px;
+	text-decoration:none;
+	color:#333;
+}
+
+ul#navigation-h li.menu-01 {}
+ul#navigation-h li.menu-01 a {
+	
+}
+ul#navigation-h li.menu-01 a:hover,
+ul#navigation-h li.menu-01 li:hover a,
+ul#navigation-h li.menu-01 li.iehover a {
+	
+}
+ul#navigation-h li.menu-02 {}
+ul#navigation-h li.menu-02 span {
+	float: none !important; /*For Opera*/
+	float: left; /*For IE*/
+	display: block;
+	height: auto !important;
+	height: 1%; /*For IE*/
+	padding:8px 10px 5px 30px;
+	color:#999;
+	
+}
+ul#navigation-h li.menu-02 span.lock {
+	color:#999;
+	
+}
+ul#navigation-h li.menu-02 a {
+	padding-left:30px;
+	
+}
+ul#navigation-h li.menu-02 a:hover,
+ul#navigation-h li.menu-02 li:hover a,
+ul#navigation-h li.menu-02 li.iehover a {
+	
+}
+ul#navigation-h li.menu-03 {}
+ul#navigation-h li.menu-03 span {
+	float: none !important; /*For Opera*/
+	float: left; /*For IE*/
+	display: block;
+	height: auto !important;
+	height: 1%; /*For IE*/
+	padding:8px 10px 5px 28px;
+	color:#999;
+	
+}
+ul#navigation-h li.menu-03 a {
+	padding-left:28px;
+	
+}
+ul#navigation-h li.menu-03 a:hover,
+ul#navigation-h li.menu-03 li:hover a,
+ul#navigation-h li.menu-03 li.iehover a {
+	
+}
+ul#navigation-h li.menu-04 {}
+ul#navigation-h li.menu-04 a {
+	padding-left:32px;
+	
+}
+ul#navigation-h li.menu-04 a:hover,
+ul#navigation-h li.menu-04 li:hover a,
+ul#navigation-h li.menu-04 li.iehover a {
+	
+}
+ul#navigation-h li.menu-05 {}
+ul#navigation-h li.menu-05 span {
+	float: none !important; /*For Opera*/
+	float: left; /*For IE*/
+	display: block;
+	height: auto !important;
+	height: 1%; /*For IE*/
+	padding:8px 10px 5px 30px;
+	color:#999;
+	
+}
+ul#navigation-h li.menu-05 a {
+	padding-left:30px;
+	
+}
+ul#navigation-h li.menu-05 a:hover,
+ul#navigation-h li.menu-05 li:hover a,
+ul#navigation-h li.menu-05 li.iehover a {
+	
+}
+ul#navigation-h li.menu-06 {}
+ul#navigation-h li.menu-06 a {
+	padding-left:28px;
+	
+}
+ul#navigation-h li.menu-06 a:hover,
+ul#navigation-h li.menu-06 li:hover a,
+ul#navigation-h li.menu-06 li.iehover a {
+	
+}
+
+
+ul#navigation-h li.menu-07 {
+	
+}
+
+ul#navigation-h li.menu-07 span {
+	float: none !important; /*For Opera*/
+	float: left; /*For IE*/
+	display: block;
+	height: auto !important;
+	height: 1%; /*For IE*/
+	padding:8px 0 5px 33px;
+}
+ul#navigation-h li.menu-07 span.owner {
+	
+}
+ul#navigation-h li.menu-07 span.id {
+	
+}
+ul#navigation-h li.menu-07 span.member {
+	
+}
+ul#navigation-h li.menu-07 span.all {
+	
+}
+
+
+ul#navigation-h ul {
+	width:160px;
+	height:auto;
+	display:none;
+	position:absolute;
+	top:30px;
+	left: 0;
+}
+
+ul#navigation-h ul:after /*From IE 7 lack of compliance*/{
+	clear:both;
+	display:block;
+	font:1px/0px serif;
+	content: ".";
+	height:0;
+	visibility:hidden;
+}
+
+ul#navigation-h ul li {
+	width: 180px;
+	height:auto;
+	float: left; /*For IE 7 lack of compliance*/
+	display: block !important;
+	display: inline; /*For IE*/
+}
+ul#navigation-h li.menu-01 ul li {
+	width:250px;
+}
+ul#navigation-h li.menu-04 ul li {
+	width:300px;
+}
+ul#navigation-h li.menu-05 ul li {
+	width:250px;
+}
+/* 2nd Menu */
+ul#navigation-h li:hover li span,
+ul#navigation-h li.iehover li span,
+ul#navigation-h li:hover li a,
+ul#navigation-h li.iehover li a {
+	float: none;
+	
+	color:#333;
+	padding:4px 15px;
+	border:#7c7c7c solid;
+	border-width:0 1px;
+}
+ul#navigation-h li:hover li span,
+ul#navigation-h li.iehover li span {
+	color:#999;
+}
+
+/* 2nd Menu Hover Persistence */
+ul#navigation-h li:hover li a:hover,
+ul#navigation-h li:hover li:hover a,
+ul#navigation-h li.iehover li a:hover,
+ul#navigation-h li.iehover li.iehover a {
+	
+}
+
+/* Do Not Move - Must Come Before display:block for Gecko */
+ul#navigation-h li:hover ul ul,
+ul#navigation-h li:hover ul ul ul,
+ul#navigation-h li.iehover ul ul,
+ul#navigation-h li.iehover ul ul ul {
+	display: none;
+}
+
+ul#navigation-h li:hover ul,
+ul#navigation-h ul li:hover ul,
+ul#navigation-h ul ul li:hover ul,
+ul#navigation-h li.iehover ul,
+ul#navigation-h ul li.iehover ul,
+ul#navigation-h ul ul li.iehover ul {
+	display: block;
+}
+
+/* common-footer -- 共通フッタ
+---------------------------------------------------------------------------------------- */
+div#common-footer {}
+div#common-footer div.column-inner {
+	padding:5px;
+	margin:0 auto;
+	text-align:center;
+}
+div#common-footer div.column-inner p.display-change {
+	margin-bottom:10px;
+}
+div#common-footer div.column-inner p.partner {}
+div#common-footer div.column-inner ul {
+	padding:0;
+	margin-top:0;
+	margin-bottom:0;
+}
+div#common-footer div.column-inner ul li {
+	display:inline;
+}
+
+
+
+/* wiki-container -- 個別ウィキ用のエリア
+---------------------------------------------------------------------------------------- */
+div#wiki-container {
+	text-align:left;
+}
+
+/* wiki-header
+---------------------------------------------------------------------------------------- */
+
+/* wiki-menu
+---------------------------------------------------------------------------------------- */
+div#wiki-menu {
+	position:relative;
+}
+div#wiki-menu ul {
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+
+ul#navigation-m {
+	position:absolute;
+	left:0;
+	bottom:0;
+}
+ul#navigation-m li {
+	display:inline;
+}
+div#wiki-menu p {
+	display:block;
+	float:right;
+	margin:5px 10px 0;
+}
+div#wiki-menu p a img {
+	width:0;
+	height:0;
+}
+div#wiki-menu p a {
+	display: block;
+	width:80px;
+	height:20px;
+	
+}
+div#wiki-menu p a:hover {
+	
+}
+
+div#wiki-menu div.search-box {
+	float:right;
+	text-align:right;
+}
+div#wiki-menu div.search-box ul {}
+div#wiki-menu div.search-box ul li {
+	display:inline;
+}
+div#wiki-menu div.search-box ul li input {}
+div#wiki-menu div.search-box ul li input.form-text {
+	width:180px;
+}
+
+
+/* 現在表示されてない部分
+--------------------------------------------------------- */
+div#wiki-menu ul.tool-list {
+	float:right;
+	margin-left:10px;
+	margin-top:2px;
+}
+div#wiki-menu ul.tool-list li {}
+div#wiki-menu ul.tool-list li img {}
+
+
+/* maincolumn
+---------------------------------------------------------------------------------------- */
+span.title-right {
+	float:right;
+}
+
+/* page-header
+-------------------------------------------------------- */
+div#page-header {}
+div#page-header div.title {}
+div#page-header div.title div.inner {
+	position:relative;
+}
+div#page-header div.title h2 {
+	position:relative;
+	display:inline;
+}
+div#page-header div.title h2 img {
+	vertical-align:middle;
+	margin-left:5px;
+}
+div#page-header div.title h2 a img {
+	border-bottom:1px solid;
+}
+
+div#page-header div.title p.history {
+	position:absolute;
+	bottom:0;
+	right:0;
+	line-height:1;
+}
+* html div#page-header div.title p.history {
+	display:block;
+	width:60px;
+}
+div#page-header div.title p.history a {
+	display:block;
+	height:17px;
+	line-height:17px;
+	padding-left:18px;
+	
+}
+div#page-header div.title span.history-link {}
+div#page-header div.title span.history-link a {}
+div#page-header p.update {
+	text-align:right;
+}
+div#page-header p.update img {
+	vertical-align:bottom;
+	margin-right:2px;
+}
+div#page-header p.update span.history {
+	margin-left:5px;
+}
+div#page-header p.update span.history a {
+	text-decoration:underline;
+}
+div#page-header p.update span.history a:hover {
+	text-decoration:none;
+}
+
+/* page-body
+-------------------------------------------------------- */
+div#page-body p.caution {
+	padding:30px 0;
+	font-weight:bold;
+}
+
+div#page-body div.history-box {
+	margin:5px auto 10px;
+}
+div#page-body div.history-box textarea {
+	width:100%;
+	height:150px;
+}
+*html div#page-body div.history-box textarea {
+	width:99%;
+}
+*:first-child+html div#page-body div.history-box textarea {
+	width:99%;
+}
+
+div#page-body div.history-box div.button {
+	text-align:center;
+	margin:10px auto 0;
+}
+div#page-body div.history-box div.button input {}
+
+/* page-footer
+-------------------------------------------------------- */
+div#page-footer {}
+div#information-box {
+	font-size:12px;
+	margin-bottom:10px;
+}
+div#information-box ul {}
+div#information-box ul li {}
+
+div#information-box p.edit {
+	line-height:20px;
+	height:20px;
+	padding-left:20px;
+	
+	margin-bottom:10px;
+}
+div#information-box p.edit span {
+	font-size:120%;
+	font-weight:bold;
+}
+ul#page-attachedfile {
+	margin:0 0 5px 0;
+	list-style:none;
+	padding:0;
+}
+ul#page-attachedfile li {
+	display:inline;
+	padding:4px 0 6px 5px;
+}
+ul#page-attachedfile li.title {
+	font-weight:bold;
+	font-size:120%;
+	line-height:20px;
+	height:20px;
+	padding-left:20px;
+	
+}
+ul#page-extra {
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+ul#page-extra li {
+	display:inline;
+}
+ul#page-extra li.print {
+	line-height:20px;
+	height:20px;
+	padding-left:20px;
+	
+}
+
+ul#page-posted {
+	text-align:right;
+	font-size:12px;
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+ul#page-posted li {
+	display:inline;
+	padding:3px 0;
+}
+ul#page-posted li.comment {
+	line-height:20px;
+	height:20px;
+	padding-left:18px;
+	
+	margin-right:10px;
+}
+ul#page-posted li.trackback {
+	line-height:20px;
+	height:20px;
+	padding-left:18px;
+	
+}
+ul#page-category {
+	font-size:12px;
+	list-style:none;
+	margin:0 0 10px;
+	padding:0;
+}
+ul#page-category li {
+	display:inline;
+	margin-right:10px;
+}
+ul#page-category li.title {
+	font-weight:bold;
+	margin-right:5px;
+}
+
+#page-tag-outer {
+	padding:10px;
+	border:#cdcdcd solid 1px;
+}
+#page-tag-title {
+}
+#page-tag-title span {
+	font-size:12px;
+	font-weight:bold;
+}
+ul#page-tags {
+	font-size:12px;
+	list-style:none;
+	margin:0;
+	padding:0 10px;
+}
+ul#page-tags li {
+	display:inline;
+	line-height:2;
+	margin-right:10px;
+}
+
+
+
+/* #main tag
+     ユーザーが書き込むウィキタグ→htmlタグのスタイルを指定
+---------------------------------------------------------------------------------------- */
+div.user-area {
+	line-height:1.5;
+	margin-bottom:20px;
+}
+*html div.user-area {
+	width:expression(document.body.clientWidth < 350? "350px" : "auto");
+}
+div.user-area span.fsize {
+	line-height:1.3;
+}
+div#main div.user-area div.wiki-section-1 {
+	margin-bottom:15px;
+}
+div#main div.user-area div.wiki-section-2 {
+	margin-bottom:15px;
+}
+div#main div.user-area div.wiki-section-3 {
+	margin-bottom:15px;
+}
+div#main div.user-area div.title-1 {
+	margin-bottom:5px;
+}
+div#main div.user-area div.title-2 {
+	margin-bottom:5px;
+}
+div#main div.user-area div.title-3 {
+	margin-bottom:5px;
+}
+div#main div.user-area div.title-1 a img,
+div#main div.user-area div.title-2 a img,
+div#main div.user-area div.title-3 a img {
+	vertical-align:middle;
+	margin-left:3px;
+	border-bottom:1px solid;
+}
+
+div#main div.user-area div.wiki-section-body-1 {
+	padding:0 1em;
+}
+div#main div.user-area div.wiki-section-body-2 {
+	padding:0 1em;
+}
+div#main div.user-area div.wiki-section-body-3 {
+	padding:0 1em;
+}
+
+div.sidecolumn div.user-area div.wiki-section-1 {
+	margin-bottom:10px;
+}
+div.sidecolumn div.user-area div.wiki-section-2 {
+	margin-bottom:10px;
+}
+div.sidecolumn div.user-area div.wiki-section-3 {
+	margin-bottom:10px;
+}
+
+div.sidecolumn div.user-area div.title-1 {
+	margin-bottom:5px;
+}
+div.sidecolumn div.user-area div.title-2 {
+	margin-bottom:5px;
+}
+div.sidecolumn div.user-area div.title-3 {
+	margin-bottom:5px;
+}
+div.sidecolumn div.user-area div.wiki-section-body-1 {}
+div.sidecolumn div.user-area div.wiki-section-body-2 {}
+div.sidecolumn div.user-area div.wiki-section-body-3 {}
+
+div.user-area a.outlink {
+	padding-right:18px;
+	
+}
+div.user-area p {
+	margin-bottom:10px;
+}
+div.user-area hr {
+	border:none;
+	height:1px;
+	margin:10px auto;
+	
+	color:#9a9a9a;
+}
+div.user-area pre {
+	margin:10px auto;
+}
+div.user-area blockquote {
+	border:#999 dashed 1px;
+	padding:10px;
+	margin:10px auto;
+}
+
+div.user-area table {
+	margin:10px 0;
+}
+div.user-area table th,
+div.user-area table td {
+	padding:5px;
+	border:#000 solid 1px;
+}
+div.user-area table th {
+	
+}
+div.user-area table td {
+	
+}
+
+div.user-area div.title-1,
+div.user-area div.title-2,
+div.user-area div.title-3 {}
+div.user-area div.title-1 h3,
+div.user-area div.title-2 h4,
+div.user-area div.title-3 h5 {
+	font-weight:bold;
+}
+div.user-area div.title-1 h3 {
+	font-size:160%;
+}
+div.user-area div.title-2 h4 {
+	font-size:140%;
+}
+div.user-area div.title-3 h5 {
+	font-size:110%;
+}
+div.user-area ul.list-1,
+div.user-area ul.list-2,
+div.user-area ul.list-3 {
+	margin:0;
+	padding:0 0 0 20px;
+	line-height:1.3;
+}
+div.user-area ul.list-1 {
+	margin:10px 0;
+}
+div.user-area ul.list-1 li,
+div.user-area ul.list-2 li,
+div.user-area ul.list-3 li {
+	margin-bottom:5px;
+}
+div.user-area ul.list-1 {
+	list-style-type:disc;
+}
+div.user-area ul.list-2 {
+	list-style-type:circle;
+}
+div.user-area ul.list-3 {
+	list-style-type:square;
+}
+div.user-area ol.list-1,
+div.user-area ol.list-2,
+div.user-area ol.list-3 {
+	margin:0;
+	padding:0 0 0 20px;
+	line-height:1.3;
+}
+div.user-area ol.list-1 {
+	margin:10px 0;
+}
+div.user-area ol.list-1 li,
+div.user-area ol.list-2 li,
+div.user-area ol.list-3 li {
+	margin-bottom:5px;
+}
+div.user-area ol.list-1 {
+	list-style-type:decimal;
+}
+div.user-area ol.list-2 {
+	list-style-type:lower-roman;
+}
+div.user-area ol.list-3 {
+	list-style-type:lower-alpha;
+}
+
+div.sidecolumn div.user-area {
+	padding:0;
+	margin-bottom:0;
+}
+div.sidecolumn div.user-area h3,
+div.sidecolumn div.user-area h4,
+div.sidecolumn div.user-area h5 {
+	font-size:100%!important;
+}
+div.sidecolumn div.user-area div.title-1,
+div.sidecolumn div.user-area div.title-2 {}
+div.sidecolumn div.user-area ul.list-1,
+div.sidecolumn div.user-area ol.list-1 {
+	margin:0;
+}
+
+/* パッド記法
+-------------------------------------------------------- */
+div.user-area div.pad {
+	margin:10px auto;
+}
+div.user-area div.pad-inner {
+	display:inline-block;
+	text-align:left;
+	padding:10px;
+	color:#000;
+	font-size:12px;
+	
+	line-height:20px;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border:#ccc solid 1px;
+}
+*:first-child+html div.user-area div.pad-inner {
+	display:inline;
+}
+* html div.user-area div.pad-inner {
+	display:inline;
+}
+
+div.user-area div.pad-inner img {
+	vertical-align:middle;
+}
+
+/* +08/12/16更新 pre、div
+-------------------------------------------------------- */
+.AAS,
+.AA {
+	font-family:'ＭＳ Ｐゴシック',IPAMonaPGothic,Mona;
+	font-size:12pt;
+	line-height:18px;
+	letter-spacing:0;
+}
+.BOX {
+	color:#333;
+	padding:5px;
+	border:#ffb93f dashed 1px;
+	
+}
+
+pre.prettyprint,
+pre.AAS {
+	overflow:auto;
+}
+*:first-child+html pre.prettyprint,
+*:first-child+html pre.AAS {
+	overflow-y:visible;
+	overflow-x:scroll;
+}
+
+*html pre.prettyprint,
+*html pre.AAS {
+	width:95%;
+	overflow-x:scroll;
+}
+
+pre.prettyprint {
+	color:#000;
+	
+	padding:10px;
+	border:#333 solid 1px;
+}
+
+textarea.PLAIN-BOX {
+	width:100%;
+	height:100px;
+	margin:10px auto;
+}
+*html textarea.PLAIN-BOX {
+	width:95%;
+}
+
+/* +09/05/30更新 トグル
+-------------------------------------------------------- */
+div#main div.user-area div.toggle-title {
+	margin:5px auto;
+}
+div#main div.user-area div.toggle-display {
+	margin:0 auto 5px;
+}
+div.sidecolumn div.user-area div.toggle-title {
+	margin:0 auto 5px;
+}
+div.sidecolumn div.user-area div.toggle-display {
+	margin:0 auto 5px;
+}
+div.user-area a.toggle-link-close,
+div.user-area a.toggle-link-open {
+	display:block;
+	float:left;
+	height:17px;
+}
+div.user-area div.toggle-title p {
+	display:block;
+	margin:0 0 0 22px!important;
+}
+div.user-area a.toggle-link-open {
+	cursor: pointer;
+	
+}
+div.user-area a.toggle-link-close {
+	cursor: pointer;
+	
+}
+div.user-area a.toggle-link-open:active,
+div.user-area a.toggle-link-close:active {
+	outline: none;
+}
+div.user-area a.toggle-link-open:focus,
+div.user-area a.toggle-link-close:focus {
+	-moz-outline-style: none;
+}
+div.user-area div.toggle-display {
+	padding-left:22px;
+}
+
+/* sidecolumn
+---------------------------------------------------------------------------------------- */
+div.sidecolumn {}
+div.sidecolumn div.column-inner {}
+div.sidecolumn ul {
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+
+div.free-box,
+div.form-box,
+div.side-box {
+	margin-bottom:10px;
+}
+
+div.free-box div.title,div.form-box div.title,div.side-box div.title {}
+
+div.side-box {}
+div.side-box ul {}
+div.side-box ul li {
+	margin-bottom:5px;
+}
+div.side-box ul li span {
+	padding-left:5px;
+	font-size:80%;
+}
+div.side-box ul.parent-list {}
+div.side-box ul.parent-list li {
+	margin:0 0 10px 0;
+}
+div.side-box ul.parent-list li h3 {
+	margin-bottom:5px;
+}
+div.side-box ul.parent-list li h3 a {}
+div.side-box ul.child-list {
+	margin-left:15px;
+}
+div.side-box ul.child-list li {}
+div.sidecolumn div.ld-plugin div.inner {}
+div.sidecolumn div.ld-plugin div.inner p.count {
+	margin:5px auto 0;
+}
+div.sidecolumn div.ld-plugin div.inner p.button {
+	margin:0 auto;
+	text-align:center;
+}
+
+div.sidecolumn ul.editorList {}
+div.sidecolumn ul.editorList li {
+	display:block;
+	float:left;
+	margin:0 7px 7px 0;
+}
+div.sidecolumn ul.editorList2 {
+	margin-top:10px;
+}
+div.side-box p.link-list {
+	text-align:right;
+	padding:0;
+	margin:0;
+	line-height:1;
+}
+div.sidecolumn ul.editorList li img {
+	width:32px;
+	height:32px;
+}
+div.sidecolumn div.qrcode div.body {
+	text-align:center;
+}
+
+/* sub
+-------------------------------------------------------- */
+div#sub div.form-box form {}
+div#sub div.form-box form input.form-text {}
+div#sub div.form-box form input.form-button {}
+
+/* extra
+-------------------------------------------------------- */
+div#extra div.form-box form {}
+div#extra div.form-box form input.form-text {}
+div#extra div.form-box form input.form-button {}
+
+
+/* コメント一覧?トラックバック一覧
+     コメントは個別ページ（個数制限あり、「.page-index」内に配置）、コメントページ（全件表示「.page-comment」内に配置）
+--------------------------------------------------------------------------------------------------------------- */
+div#comment-box,
+div#trackback-box {
+	margin-bottom:30px;
+}
+div#comment-box div.title,
+div#trackback-box div.title {
+	margin-bottom:10px;
+}
+div#comment-box div.title h3,
+div#trackback-box div.title h3 {
+	font-weight:bold;
+	font-size:120%;
+}
+
+div#comment-box div.body,
+div#trackback-box div.body {}
+
+div#comment-box div.body div.text,
+div#trackback-box div.body div.text {
+	margin-bottom:10px;
+}
+div#comment-box div.body div.text p,
+div#trackback-box div.body div.text p {
+	line-height:130%;
+	margin-bottom:5px;
+}
+div#comment-box div.body div.text span.posted,
+div#trackback-box div.body div.text span.posted {
+	display:block;
+	line-height:130%;
+	text-align:right;
+}
+
+/* 個別ページ内での設定 */
+div.page-index div#comment-box {
+	margin-bottom:0;
+}
+div.page-index div#comment-box div.comment-more {
+	text-align:center;
+	margin:0 auto;
+}
+div.page-index div#comment-box div.comment-more input {
+	width:250px;
+	font-size:18px;
+	cursor:pointer;
+}
+
+
+
+/* トラックバックフォーム */
+div#trackback-box div.entry {
+	margin-bottom:10px;
+}
+div#trackback-box div.entry label {
+	display:block;
+	font-weight:bold;
+	margin-bottom:5px;
+}
+div#trackback-box div.entry input {
+	width:80%;
+}
+
+/* 投稿フォーム */
+div.page-comment div#page-body div.form-box {}
+div.page-comment div#page-body div.form-box div.title {
+	font-weight:bold;
+	padding:0;
+	
+	margin-bottom:5px;
+}
+div.page-comment div#page-body div.form-box div.title h3 {
+	padding:0;
+	margin:0;
+	
+}
+div.page-comment div#page-body div.form-box table {}
+div.page-comment div#page-body div.form-box table tr {
+	vertical-align:top;
+}
+div.page-comment div#page-body div.form-box table th {
+	width:90px;
+	padding:5px 0;
+	white-space:nowrap;
+	font-weight:bold;
+	line-height:1;
+	text-align:left;
+}
+div.page-comment div#page-body div.form-box table td {
+	padding:5px;
+	line-height:1;
+	text-align:left;
+}
+div.page-comment div#page-body div.form-box table td p {
+	margin:5px 0;
+	line-height:1.3;
+}
+div.page-comment div#page-body div.form-box table td.button {
+	padding:5px 0 5px 90px;
+}
+div.page-comment div#page-body div.form-box table td input#author,
+div.page-comment div#page-body div.form-box table td input#email,
+div.page-comment div#page-body div.form-box table td input#url,
+div.page-comment div#page-body div.form-box table td input#captcha {
+	width:200px;
+}
+div.page-comment div#page-body div.form-box table td textarea {
+	width:350px;
+	height:150px;
+}
+
+div#page-footer p.cantion {
+	color:#999;
+	font-size:120%;
+	font-weight:bold;
+}
+
+/* ページ一覧
+---------------------------------------------------------------------------------------- */
+div#main div.form-box {}
+div#main div.form-box select {}
+div#main div.form-box input {}
+
+div.paging-top,
+div.paging-bottom {
+	text-align:right;
+}
+div.paging-top p,
+div.paging-bottom p {
+	line-height:1;
+	margin-top:5px;
+}
+ul.paging-list {
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+ul.paging-list li {
+	color:#999;
+	display:inline;
+	line-height:1;
+}
+ul.paging-list li.prev {
+	padding-right:10px;
+	margin-right:10px;
+	border-right:#666 solid 1px;
+}
+ul.page-list {
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+ul.page-list li {
+	line-height:16px;
+	padding-left:18px;
+	
+	margin-bottom:10px;
+}
+ul.page-list li.last {
+	margin-bottom:30px;
+}
+ul.page-list li span {
+	display:block;
+	width:370px;
+	float:right;
+	font-size:80%;
+}
+ul.page-list li span img {
+	margin:0 3px 0 5px;
+	vertical-align:bottom;
+}
+
+
+/* add 10/05/13
+------------------------------------------------------------- */
+div.page-pagelist {}
+div.page-pagelist div.form-box {}
+div.page-pagelist div.form-box p.paging-status {
+	float:left;
+}
+div.page-pagelist div.form-box div.list-display {
+	float:right;
+}
+div.page-pagelist div.pager {
+	text-align:center;
+	margin:10px auto;
+}
+div.page-pagelist div.pager ul.paging-simple {
+	list-style:none;
+	margin:0 auto;
+	padding:0;
+	display:block;
+	text-align:center;
+}
+div.page-pagelist div.pager ul.paging-simple li {
+	display:inline;
+}
+div.page-pagelist div.pager ul.paging-simple li.prev {
+	border-right:#999 solid 1px;
+	padding-right:10px;
+	margin-right:10px;
+}
+
+
+/* 検索一覧?タグ一覧       09/09/03更新
+---------------------------------------------------------------------------------------- */
+div.page-result {}
+
+/* 検索フォーム */
+div.search-box-main {
+	padding:0!important;
+	
+	height:64px;
+}
+div.search-box-main div.box-inner {
+	padding:0!important;
+	
+	height:64px;
+	text-align:center;
+}
+div.search-box-main div.box-inner form {
+	padding-top:7px;
+}
+* html div.search-box-main div.box-inner form {
+	padding-top:5px;
+}
+*:first-child+html div.search-box-main div.box-inner form {
+	padding-top:5px;
+}
+div.search-box-main input {
+	vertical-align:middle;
+}
+div.search-box-main label {
+	vertical-align:middle;
+	margin:0 3px 0 2px;
+}
+div.search-box-main ul {
+	padding:0;
+	margin:3px auto 0;
+}
+div.search-box-main ul li {
+	display:inline;
+}
+div.search-box-main ul li.title {
+	font-weight:bold;
+	color:#333;
+}
+div.search-box-main ul li.form-text {
+	margin-left:5px;
+}
+div.search-box-main ul li.form-text input {}
+div.search-box-main ul li.form-text input#keywords {
+	width:300px;
+	font-size:14px;
+	padding:3px 2px 2px;
+	border:#6c6c6c solid;
+	border-width:1px 0 1px 1px;
+}
+*:first-child+html div.search-box-main ul li.form-text input#keywords {
+	padding:4px 2px 3px;
+}
+* html div.search-box-main ul li.form-text input#keywords {
+	padding:4px 2px 3px;
+}
+div.page-result div.tagcloud {}
+
+div.result-box {}
+div.result-box p.title {
+	margin:20px 0 10px;
+}
+div.result-box p.title strong {
+	font-weight:bold;
+	font-size:140%;
+}
+div.result-box div.paging-top {}
+div.result-box div.paging-bottom {}
+
+div.result-box div.body {
+	margin-bottom:20px;
+}
+div.result-box div.body h3.keyword {
+	font-weight:bold;
+	font-size:120%;
+	margin-bottom:5px;
+}
+div.result-box div.body p.text {
+	line-height:130%;
+	margin-bottom:5px;
+}
+/* 検索ワードハイライト */
+div.result-box div.body p.text span.search-keyword {
+	color:#333;
+	font-weight:bold;
+	
+}
+div.result-box div.body p.url {
+	font-size:90%;
+}
+
+
+/* 履歴
+---------------------------------------------------------------------------------------- */
+div.page-history p {
+	line-height:130%;
+}
+div.page-history p.update {
+	margin:10px auto;
+}
+
+div.page-history p.update img {
+	vertical-align:bottom;
+	margin-right:2px;
+}
+div.page-history div#information-box {
+	margin:10px auto;
+}
+
+div.page-history div#information-box ul.point-list {}
+div.page-history div#information-box ul.point-list li {}
+div.page-history div.user-area ul.history-list {}
+div.page-history div.user-area div.title-1 {
+	margin:20px auto 10px;
+}
+
+/* 差分
+---------------------------------------------------------------------------------------- */
+div.page-diff {}
+div.page-diff .line-add {
+	color:#0000ff;
+}
+div.page-diff .line-delete {
+	color:#ff0000;
+}
+div.page-diff div.information-box {
+	line-height:150%;
+	margin-bottom:10px;
+}
+div.page-diff div.information-box p {
+	margin-bottom:10px;
+}
+div.page-diff div.information-box p.category {
+	font-weight:bold;
+}
+div.page-diff div.diff-box {
+	border:#999 solid 1px;
+	padding:5px;
+	
+}
+
+/* 一覧フォントカラー */
+table td.diff-minus {
+	color:#0000ff;
+}
+table td.diff-plus {
+	color:#ff0000;
+}
+
+/* 添付一覧
+---------------------------------------------------------------------------------------- */
+div.page-attachment {}
+div.page-attachment ul.page-list {
+	margin:5px 0 0;
+	padding:0;
+	list-style:none;
+}
+div.page-attachment ul.page-list li {
+	line-height:1;
+	padding:5px;
+	
+	margin-bottom:0;
+}
+div.page-attachment ul.page-list li.even {
+	
+}
+div.page-attachment ul.page-list li.odd {
+	
+}
+div.page-attachment ul.page-list li.last {
+	margin-bottom:30px;
+}
+div.page-attachment ul.page-list li span {
+	display:inline;
+	width:auto;
+	float:none;
+}
+div.page-attachment ul.page-list li span.info {
+	display:block;
+	width:400px;
+	float:right;
+	font-size:80%;
+	padding:2px 0;
+}
+div.page-attachment ul.page-list li span.file-image,
+div.page-attachment ul.page-list li span.file-pdf,
+div.page-attachment ul.page-list li span.file-audio,
+div.page-attachment ul.page-list li span.file-none {
+	padding:2px 0 2px 18px;
+	line-height:1;
+}
+div.page-attachment ul.page-list li span.file-image {
+	
+}
+div.page-attachment ul.page-list li span.file-pdf {
+	
+}
+div.page-attachment ul.page-list li span.file-audio {
+	
+}
+div.page-attachment ul.page-list li span.file-none {
+	
+}
+
+/* google adsense
+---------------------------------------------------------------------------------------- */
+div#main div.adsense-box {
+	
+	padding:5px;
+	display:block!important;
+}
+div.sidecolumn div.adsense-box {
+	text-align:center;
+	
+	padding:5px;
+	margin:0 auto 10px;
+	display:block!important;
+}
+
+div.adsense-box p {
+	text-align:right;
+	color:#000;
+	font-weight:bold;
+	line-height:100%;
+	margin-top:5px;
+}
+div.adsense-box ul {
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+div.adsense-box ul li {
+	text-align:left;
+}
+div.adsense-box ul li a {
+	zoom:1;
+	text-decoration:none;
+}
+div.adsense-box ul li a:hover {
+	
+}
+div.adsense-box ul li span.ads-title {
+	color:#00f;
+	font-weight:bold;
+	line-height:100%;
+}
+div.adsense-box ul li span.ads-url {
+	color:#008000;
+	font-size:90%;
+	line-height:100%;
+}
+div.adsense-box ul li span.ads-text {
+	display:block;
+	color:#333;
+	font-size:90%;
+	margin-top:5px;
+	line-height:100%;
+}
+div.sidecolumn div.adsense-box ul li span.ads-url {
+	display:block;
+	margin-top:5px;
+}
+div#main div.adsense-box ul li span.ads-title {
+	font-size:120%;
+	line-height:1;
+}
+div#main div.adsense-box ul li span.ads-url {
+	line-height:1;
+}
+div#main div.adsense-box ul li span.ads-text {
+	display:block;
+	margin:5px 0 0 0;
+	line-height:1;
+}
+/* 3カラムの場合 */
+body.layout-3-r div#main div.adsense-box ul li span.ads-text,
+body.layout-3 div#main div.adsense-box ul li span.ads-text {
+	display:block;
+	margin:5px 0 0 0;
+	line-height:100%;
+}
+body.layout-3-r div.side-off div#main div.adsense-box ul li span.ads-text,
+body.layout-3 div.side-off div#main div.adsense-box ul li span.ads-text {
+	display:inline;
+	margin:0 0 0 10px;
+	line-height:110%;
+}
+
+div.adsense-main-top {
+	margin:0 auto 10px!important;
+}
+div.adsense-main-inner {
+	
+	border:none!important;
+}
+div.adsense-main-inner ul li span.ads-title {
+	font-size:100%!important;
+}
+div.adsense-main-bottom {}
+
+div.adsense-top {
+	margin:0 auto 10px!important;
+	border:#dedede solid 1px!important;
+}
+
+div.adsense-sub {}
+div.adsense-sub ul li span.ads-title {
+	display:block;
+}
+div.adsense-sub ul li span.ads-url {
+	display:block;
+	margin-top:5px;
+}
+div.adsense-extra {
+	text-align:center;
+	margin:0 auto;
+}
+
+div.page-index div#adsense-location-top2 {
+	margin:0!important;
+	padding:0!important;
+}
+div.page-index div#adsense-location-top2 p {
+	text-align:right;
+	margin:0!improtant;
+}
+div.page-index div#adsense-location-inner p {
+	text-align:right;
+	margin:0!improtant;
+}
+
+/* tagcloud
+---------------------------------------------------------------------------------------- */
+div.tagcloud {
+	line-height:200%;
+}
+div.tagcloud span {
+	margin-right:10px;
+}
+.tagcloud_base a:link {color:#00f;text-decoration:none;}
+.tagcloud_base a:visited {color:#00f;text-decoration:none;}
+.tagcloud_base a:active {color:#f00;text-decoration:none;}
+.tagcloud_base a:hover {color:#f00;text-decoration:underline;}
+
+.tagcloud_used a:link {color:#f60;}
+.tagcloud_used a:visited {color:#f60;}
+.tagcloud_used a:active {color:#00f;}
+.tagcloud_used a:hover {color:#00f;}
+
+.tagcloud0 {font-size:10px;}
+.tagcloud1 {font-size:12px;font-weight:bold;}
+.tagcloud2 {font-size:14px;font-weight:bold;}
+.tagcloud3 {font-size:16px;font-weight:bold;}
+.tagcloud4 {font-size:20px;font-weight:bold;}
+
+.tagcloud_t0 a:link {color:#ccf;}
+.tagcloud_t0 a:visited {color:#ccf;}
+.tagcloud_t0 a:active {color:#f00;}
+.tagcloud_t0 a:hover {color:#f00;}
+
+.tagcloud_t1 a:link {color:#a6a6ff;}
+.tagcloud_t1 a:visited {color:#a6a6ff;}
+.tagcloud_t1 a:active {color:#f00;}
+.tagcloud_t1 a:hover {color:#f00;}
+
+.tagcloud_t2 a:link {color:#7f7fff;}
+.tagcloud_t2 a:visited {color:#7f7fff;}
+.tagcloud_t2 a:active {color:#f00;}
+.tagcloud_t2 a:hover {color:#f00;}
+
+.tagcloud_t3 a:link {color:#4c4cff;}
+.tagcloud_t3 a:visited {color:#4c4cff;}
+.tagcloud_t3 a:active {color:#f00;}
+.tagcloud_t3 a:hover {color:#f00;}
+
+.tagcloud_t4 a:link {color:#00f;}
+.tagcloud_t4 a:visited {color:#00f;}
+.tagcloud_t4 a:active {color:#f00;}
+.tagcloud_t4 a:hover {color:#f00;}
+
+/* +08/11/17 tags-pagelist
+---------------------------------------------------------------------------------------- */
+div.tags-box {
+	margin-bottom:10px;
+}
+div.tags-box p.title {
+	padding:0;
+	margin:0;
+}
+div.tags-box p.title a.imageLink {
+	display:block;
+	width:42px;
+	height:16px;
+	float:left;
+}
+div.tags-box p.title a.textLink {
+	margin-left:8px;
+	font-weight:bold;
+	line-height:16px;
+}
+div.tags-box p.title a.imageLink img{
+	width:0;
+	height:0;
+}
+div.tags-open a.imageLink {
+	
+}
+div.tags-close a.imageLink {
+	
+}
+div.tags-box ul.list-pagelist {
+	display:none;
+}
+div.tags-box ul.list-pagelist-on {
+	margin:0 0 0 46px;
+	padding:0;
+	list-style:none;
+}
+div.tags-box ul.list-pagelist-on li {
+	line-height:1.2;
+	list-style:none;
+	padding:0 0 0 12px;
+	margin:5px 0 0;
+	
+}
+
+div.feed-box {
+	color:#333;
+	border:#ffbd3c solid 1px;
+	
+	padding:0;
+	margin-bottom:10px;
+}
+div.feed-box a {
+	color:#33f;
+}
+div.feed-box a:visited {
+	color:#551a8b;
+}
+div.feed-box a:hover,
+div.feed-box a:active {
+	color:#f00;
+}
+
+div.feed-box p.title {
+	margin:0;
+	padding:0;
+	
+}
+div.feed-box p.title span {
+	padding-top:2px;
+	display:block;
+	margin-right:19px;
+	
+	padding-left:65px;
+}
+div.feed-box p.title a.textLink {
+	font-weight:bold;
+	line-height:1;
+}
+div.feed-box p.title a.rssLink {}
+div.feed-box p.title a.rssLink img {
+	vertical-align:middle;
+	margin-left:3px;
+}
+div.feed-box p.title a.imageLink {
+	float:right;
+	width:16px;
+	height:19px;
+}
+div.feed-box p.title a.imageLink img {
+	width:0;
+	height:0;
+}
+div.feed-open p.title a.imageLink {
+	
+}
+div.feed-close p.title a.imageLink {
+	
+}
+div.feed-box ul.list-pagelist {
+	display:none;
+}
+div.feed-box ul.list-pagelist-on {
+	margin:10px 0 0;
+	padding:0 5px;
+	list-style:none;
+}
+div.feed-box ul.list-pagelist-on li {
+	list-style:none;
+	line-height:18px;
+	padding:0 0 0 20px;
+	margin:0 0 10px;
+}
+
+/* +08/11/13 スポンサー付テンプレ
+---------------------------------------------------------------------------------------- */
+div#banner-top {}
+div#banner-top img {
+	width:0;
+	height:0;
+}
+div#banner-top a {
+	cursor:pointer;
+	display:block;
+	width:80px;
+	height:31px;
+	
+}
+*html div#banner-top a { behavior: url("/css/usr/ie/iepngfix.htc") }
+
+div#banner-logo {}
+div#banner-logo img {
+	width:0;
+	height:0;
+}
+div#banner-logo a {
+	cursor:pointer;
+	display:block;
+	width:80px;
+	height:30px;
+}
+*html div#banner-logo a { behavior: url("/css/usr/ie/iepngfix.htc") }
+
+div#banner-side div.body {}
+div#banner-side div.body div.inner {
+	text-align:center;
+}
+div#banner-side iframe {
+	margin:0 auto;
+	width:200px;
+	height:200px;
+	border:0;
+}
+div#banner-side p.banner-tex {
+	padding:0;
+	margin:5px auto 0;
+}
+
+
+/* +08/12/08 吹き出し記法
+---------------------------------------------------------------------------------------- */
+div.BOX-balloon {
+	margin-bottom:5px;
+}
+
+div.BOX-balloon-text {
+	color:#4d4d4d;
+	line-height:1.3;
+}
+div#main div.BOX-balloon-image img {
+	width:60px;
+	height:60px;
+}
+div.sidecolumn div.BOX-balloon-image {
+	margin-bottom:5px;
+}
+div.sidecolumn div.BOX-balloon-image img {
+	width:16px;
+	height:16px;
+}
+
+/* 左
+-------------------------------------------------------- */
+div#main div.BOX-balloon-left div.BOX-balloon-image {
+	float:left;
+	width:60px;
+}
+div#main div.BOX-balloon-left div.BOX-balloon-text {
+	margin-left:65px;
+}
+div#main div.BOX-balloon-left div.balloon-top {
+	padding-left:14px;
+	
+}
+div#main div.BOX-balloon-left div.balloon-top-inner {
+	height:10px;
+	
+}
+div#main div.BOX-balloon-left div.balloon-bottom {
+	padding-left:14px;
+	
+}
+div#main div.BOX-balloon-left div.balloon-bottom-inner {
+	height:10px;
+	
+}
+div#main div.BOX-balloon-left div.balloon-body {
+	
+}
+div#main div.BOX-balloon-left div.balloon-body-inner {
+	
+	padding-left:11px;
+}
+div#main div.BOX-balloon-left div.balloon-body-inner2 {
+	border-right:#a2a2a2 solid 1px;
+	
+	padding:0 10px 5px;
+}
+div.sidecolumn div.BOX-balloon-left div.BOX-balloon-image {
+	margin-bottom:5px;
+}
+div.sidecolumn div.BOX-balloon-left div.balloon-top {
+	padding-left:4px;
+	
+}
+div.sidecolumn div.BOX-balloon-left div.balloon-top-inner {
+	height:10px;
+	
+}
+div.sidecolumn div.BOX-balloon-left div.balloon-bottom {
+	padding-left:4px;
+	
+}
+div.sidecolumn div.BOX-balloon-left div.balloon-bottom-inner {
+	height:10px;
+	
+}
+div.sidecolumn div.BOX-balloon-left div.balloon-body {
+	padding:0 10px;
+	
+	border:#a2a2a2 solid;
+	border-width:0 1px;
+}
+
+/* 右
+-------------------------------------------------------- */
+div#main div.BOX-balloon-right div.BOX-balloon-image {
+	float:right;
+	width:60px;
+}
+div#main div.BOX-balloon-right div.BOX-balloon-text {
+	margin-right:65px;
+}
+div#main div.BOX-balloon-right div.balloon-top {
+	padding-left:4px;
+	
+}
+div#main div.BOX-balloon-right div.balloon-top-inner {
+	height:10px;
+	
+}
+div#main div.BOX-balloon-right div.balloon-bottom {
+	padding-left:4px;
+	
+}
+div#main div.BOX-balloon-right div.balloon-bottom-inner {
+	height:10px;
+	
+}
+div#main div.BOX-balloon-right div.balloon-body {
+	
+}
+div#main div.BOX-balloon-right div.balloon-body-inner {
+	
+	padding-right:11px;
+}
+div#main div.BOX-balloon-right div.balloon-body-inner2 {
+	border-left:#a2a2a2 solid 1px;
+	
+	padding:0 10px 5px;
+}
+
+div.sidecolumn div.BOX-balloon-right div.BOX-balloon-image {
+	margin-bottom:5px;
+}
+div.sidecolumn div.BOX-balloon-right div.balloon-top {
+	padding-left:4px;
+	
+}
+div.sidecolumn div.BOX-balloon-right div.balloon-top-inner {
+	height:10px;
+	
+}
+div.sidecolumn div.BOX-balloon-right div.balloon-bottom {
+	padding-left:4px;
+	
+}
+div.sidecolumn div.BOX-balloon-right div.balloon-bottom-inner {
+	height:10px;
+	
+}
+div.sidecolumn div.BOX-balloon-right div.balloon-body {
+	padding:0 10px;
+	
+	border:#a2a2a2 solid;
+	border-width:0 1px;
+}
+*html div.sidecolumn div.BOX-balloon-left div.balloon-body,
+*html div.sidecolumn div.BOX-balloon-right div.balloon-body {
+	margin:-5px 0;
+}
+
+/* +09/01/14 掲示板機能
+---------------------------------------------------------------------------------------- */
+div.page-bbs {}
+*html div.page-bbs img { behavior: url("/css/usr/ie/iepngfix.htc") }
+
+div.page-bbs div#page-body {
+	font-family:'ＭＳ Ｐゴシック',IPAMonaPGothic,Mona;
+}
+
+/* layout
+body.layout-bbs div#wiki-content div#main {
+	margin:0 0 0 -250px;
+}
+body.layout-bbs div#wiki-content div#main div.column-inner {
+	margin:0 0 0 250px;
+}
+body.layout-bbs div#wiki-content div#sub {
+	width:240px;
+}
+body.layout-bbs div#wiki-content div#extra {
+	width:240px;
+}
+-------------------------------------------- */
+
+/* 共通設定
+-------------------------------------------- */
+div.page-bbs div#bbs-box {
+	padding:10px;
+}
+div.page-bbs div#page-header div.title {}
+div.page-bbs div#page-header div.title h2 {
+	float:left;
+}
+div.page-bbs div#page-header div.title div.bbs-login {
+	float:right;
+	padding-top:5px;
+}
+
+div.page-bbs div.sticky-area {
+	margin-bottom:20px;
+}
+
+div.page-bbs div.tool-area {
+	margin:0 auto 10px;
+}
+div.page-bbs div.tool-area ul.help-list {
+	margin:0 10px 0 0;
+	padding:0;
+	float:right;
+}
+div.page-bbs div.tool-area ul.help-list li {
+	font-size:80%;
+	color:#7b7b7b;
+	display:inline;
+	line-height:25px;
+	height:25px;
+	margin-right:5px;
+}
+div.page-bbs div.tool-area ul.help-list li img {
+	vertical-align:middle;
+	margin-right:3px;
+}
+div.page-bbs div.tool-area ul.help-list li.privilege-1 {}
+div.page-bbs div.tool-area ul.help-list li.privilege-2 {}
+
+div.page-bbs div.bbs-create {
+	float:right;
+}
+div.page-bbs div.bbs-create a {
+	display:block;
+	width:128px;
+	height:25px;
+	
+}
+div.page-bbs div.temp-black div.bbs-create a {
+	
+}
+div.page-bbs div.bbs-create a {
+	outline:0;
+	text-indent:-9999px;
+}
+
+div.page-bbs div.bbs-search {
+	float:right;
+}
+div.page-bbs div.bbs-search ul {
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+div.page-bbs div.bbs-search ul li {
+	display:inline;
+}
+div.page-bbs div.bbs-search ul li input {
+	vertical-align:middle;
+}
+div.page-bbs div.bbs-search ul li input.form-text {
+	width:200px;
+}
+div.page-bbs div.bbs-search ul li input.form-button {
+	margin-left:3px;
+}
+div.page-bbs ul.bbs-paging {
+	float:right;
+	margin:0;
+	padding:0;
+}
+div.page-bbs ul.bbs-paging li {
+	display:inline;
+	margin-left:10px;
+}
+div.page-bbs ul.bbs-paging li a {
+	text-decoration:none;
+}
+
+div.page-bbs ul.bbs-paging li.prev,
+div.page-bbs ul.bbs-paging li.next,
+div.page-bbs ul.paging-list li.status {}
+
+div.page-bbs div.caution-area {
+	text-align:right;
+	margin-bottom:5px;
+}
+div.page-bbs div.caution-area-bottom {
+	border-top:#d7d7d7 solid 1px;
+	margin-top:10px;
+	padding-top:5px;
+	margin-bottom:20px;
+}
+div.page-bbs div.caution-area ul.bbs-paging,
+div.page-bbs div.caution-area-bottom ul.bbs-paging {
+	float:left;
+}
+
+div.page-bbs a.bbs-top {
+	
+	padding-left:17px;
+	line-height:15px;
+	height:15px;
+}
+*html div.page-bbs a.bbs-top {behavior: url("/css/usr/ie/iepngfix.htc") }
+
+/* 一覧表示 - トピックス一覧 */
+div.page-bbs table.bbs-list-table {
+	width:100%;
+	margin:0 auto 10px;
+}
+div.page-bbs table.bbs-list-table tr {
+	vertical-align:top;
+}
+div.page-bbs table.bbs-list-table th {
+	font-weight:bold;
+	line-height:1.5;
+	padding:5px;
+	white-space:nowrap;
+}
+div.page-bbs table.bbs-list-table th.date,
+div.page-bbs table.bbs-list-table th.comment {
+	text-align:left;
+	width:1%;
+}
+div.page-bbs table.bbs-list-table th.user {
+	text-align:left;
+	width:33%;
+}
+div.page-bbs table.bbs-list-table th.title {
+	width:65%;
+}
+div.page-bbs table.bbs-list-table th.date {
+	padding-right:30px;
+}
+div.page-bbs table.bbs-list-table tr.even td {}
+div.page-bbs table.bbs-list-table tr.odd td {}
+div.page-bbs table.bbs-list-table td {
+	line-height:1.5;
+	padding:5px;
+}
+div.page-bbs table.bbs-list-table td.title {
+	font-weight:bold;
+}
+div.page-bbs table.bbs-list-table td.title img {
+	vertical-align:middle;
+	margin-left:5px;
+}
+div.page-bbs table.bbs-list-table td.user {
+	font-size:80%;
+}
+div.page-bbs table.bbs-list-table td.date {
+	white-space:nowrap;
+	font-size:80%;
+	line-height:1.8;
+}
+div.page-bbs table.bbs-list-table td.date {
+	padding-right:15px;
+}
+div.page-bbs table.bbs-list-table td.comment {
+	font-size:120%;
+	white-space:nowrap;
+	font-weight:bold!important;
+	padding-left:10px;
+}
+div.page-bbs table.bbs-list-table td.comment-many {
+	color:#ee1d00!important;
+}
+div.page-bbs table.bbs-list-table td.comment img {
+	vertical-align:top;
+	margin-left:3px;
+}
+div.page-bbs table.bbs-list-table tr.last td {
+	border-bottom:none!important;
+}
+
+/* 一覧表示 - トピックス詳細 */
+div.page-bbs div.thema-area {
+	margin:0 auto 10px;
+	padding:10px;
+}
+div.page-bbs div.thema-area h3 {
+	font-size:140%;
+	line-height:1.3;
+	font-weight:bold;
+	padding-left:15px;
+	
+}
+div.page-bbs div.thema-area p.number {
+	margin-top:10px;
+}
+div.page-bbs div.thema-area p.number span.user {
+	font-weight:bold;
+}
+div.page-bbs div.thema-area p.comment {
+	display:block;
+	margin-top:10px;
+	padding:0 0 10px 1.5em;
+	font-size:12pt;
+	line-height:18px;
+	letter-spacing:0;
+}
+div.page-bbs div.thema-area div.images {
+	padding-left:1.5em;
+}
+div.page-bbs div.thema-area div.images img {
+	vertical-align:top;
+	margin:0 10px 10px 0;
+}
+
+div.page-bbs ul.bbs-list {
+	list-style:none;
+	margin:0 0 10px 0;
+	padding:0;
+}
+div.page-bbs ul.bbs-list li {
+	padding:10px;
+}
+div.page-bbs ul.bbs-list li.even {}
+div.page-bbs ul.bbs-list li.odd {}
+div.page-bbs ul.bbs-list li p.number {}
+div.page-bbs ul.bbs-list li p.number span.user {
+	font-weight:bold;
+}
+div.page-bbs ul.bbs-list li p.comment {
+	display:block;
+	margin-top:10px;
+	padding:0 0 10px 1.5em;
+	font-size:12pt;
+	line-height:18px;
+	letter-spacing:0;
+}
+div.page-bbs ul.bbs-list li div.images {
+	padding-left:1.5em;
+}
+div.page-bbs ul.bbs-list li div.images img {
+	vertical-align:top;
+	margin:0 10px 10px 0;
+}
+
+/* 投稿フォーム */
+div.page-bbs p.caution-text {
+	margin:20px auto 0;
+	line-height:1;
+	padding:0;
+	font-size:120%;
+	font-weight:bold;
+}
+
+div.page-bbs table.bbs-form-table {
+	width:100%;
+	margin:10px auto 0;
+}
+div.page-bbs table.bbs-form-table tr {}
+div.page-bbs table.bbs-form-table td,
+div.page-bbs table.bbs-form-table th {
+	padding:5px 10px;
+}
+div.page-bbs table.bbs-form-table th {
+	width:1%;
+	font-size:120%;
+	line-height:1.3;
+	white-space:nowrap;
+	vertical-align:top;
+}
+div.page-bbs table.bbs-form-table td {
+	width:99%;
+}
+div.page-bbs table.bbs-form-table td p {
+	margin-bottom:5px;
+}
+div.page-bbs table.bbs-form-table th.title {}
+div.page-bbs table.bbs-form-table th span {
+	font-size:80%;
+}
+div.page-bbs table.bbs-form-table th p {
+	font-weight:normal;
+	font-size:80%;
+}
+div.page-bbs table.bbs-form-table td {}
+div.page-bbs table.bbs-form-table td a {
+	text-decoration:none;
+}
+div.page-bbs table.bbs-form-table td a {
+	text-decoration:underline;
+}
+div.page-bbs table.bbs-form-table td span {}
+div.page-bbs table.bbs-form-table td.text {
+	font-size:12pt;
+	line-height:18px;
+	letter-spacing:0;
+}
+div.page-bbs table.bbs-form-table input.comment-user,
+div.page-bbs table.bbs-form-table input.comment-mail {
+	width:200px;
+}
+div.page-bbs table.bbs-form-table input.comment-title {
+	width:350px;
+}
+div.page-bbs table.bbs-form-table input.comment-title-s {
+	width:200px;
+}
+div.page-bbs table.bbs-form-table textarea.comment-text {
+	width:99%;
+	height:100px;
+	
+}
+div.page-bbs table.bbs-form-table input.comment-file {
+	width:250px;
+}
+div.page-bbs table.bbs-form-table #picture1-box {}
+div.page-bbs table.bbs-form-table #picture2-box {
+	margin-top:5px;
+}
+div.page-bbs table.bbs-form-table #picture3-box {
+	margin-top:5px;
+}
+
+div.page-bbs div.bbs-submit {
+	text-align:center;
+	margin:10px auto 0;
+}
+div.page-bbs div.bbs-submit p {
+	margin-bottom:10px;
+}
+div.page-bbs div.bbs-submit input {
+	width:150px;
+}
+
+
+/* color-default
+-------------------------------------------- */
+div.page-bbs div.temp-default div#bbs-box {
+	color:#333;
+	
+}
+div.page-bbs div.temp-default div#page-body a {
+	color:#234a88;
+}
+
+div.page-bbs div.temp-default ul.bbs-paging li a {
+	color:#0050ff!important;
+}
+
+div.page-bbs div.temp-default ul.bbs-paging li {
+	color:#999;
+}
+
+/* 一覧表示 - トピックス一覧 */
+/* sticky */
+div.page-bbs div.temp-default div.sticky-area table.bbs-list-table {
+	color:#333;
+	border:none;
+}
+div.page-bbs div.temp-default div.sticky-area table.bbs-list-table th {
+	
+	border:#d7dbd7 solid 1px;
+}
+div.page-bbs div.temp-default div.sticky-area table.bbs-list-table th.title {
+	border-width:1px 0 1px 1px;
+}
+div.page-bbs div.temp-default div.sticky-area table.bbs-list-table th.user,
+div.page-bbs div.temp-default div.sticky-area table.bbs-list-table th.date {
+	border-width:1px 0;
+}
+div.page-bbs div.temp-default div.sticky-area table.bbs-list-table th.comment {
+	border-width:1px 1px 1px 0;
+}
+
+div.page-bbs div.temp-default div.sticky-area table.bbs-list-table tr.even td {
+	border-bottom:none;
+}
+div.page-bbs div.temp-default div.sticky-area table.bbs-list-table tr.odd td {
+	
+	border-bottom:none;
+}
+div.page-bbs div.temp-default div.sticky-area table.bbs-list-table tr.even td.title {
+	padding-left:15px;
+	
+}
+div.page-bbs div.temp-default div.sticky-area table.bbs-list-table tr.odd td.title {
+	padding-left:15px;
+	
+}
+
+/* 一般 */
+div.page-bbs div.temp-default table.bbs-list-table {
+	color:#333;
+	border-bottom:#cecece solid 1px;
+}
+div.page-bbs div.temp-default table.bbs-list-table th {
+	
+	border:#dce6e6 solid 1px;
+}
+div.page-bbs div.temp-default table.bbs-list-table th.title {
+	border-width:1px 0 1px 1px;
+}
+div.page-bbs div.temp-default table.bbs-list-table th.user,
+div.page-bbs div.temp-default table.bbs-list-table th.date {
+	border-width:1px 0;
+}
+div.page-bbs div.temp-default table.bbs-list-table th.comment {
+	border-width:1px 1px 1px 0;
+}
+div.page-bbs div.temp-default table.bbs-list-table th.title {}
+div.page-bbs div.temp-default table.bbs-list-table tr.even td.title {
+	padding-left:15px;
+	
+}
+div.page-bbs div.temp-default table.bbs-list-table tr.odd td.title {
+	padding-left:15px;
+	
+}
+div.page-bbs div.temp-default table.bbs-list-table th.comment {}
+div.page-bbs div.temp-default table.bbs-list-table tr.odd td {
+	
+	border-bottom:#cecece solid 1px;
+}
+div.page-bbs div.temp-default table.bbs-list-table tr.odd td.date,
+div.page-bbs div.temp-default table.bbs-list-table td.date {
+	color:#999;
+}
+
+/* 一覧表示 - トピックス詳細 */
+div.page-bbs div.temp-default div.thema-area {
+	color:#646482;
+	
+	border:#bac8c8 solid 1px;
+}
+div.page-bbs div.temp-default div.thema-area h3 {
+	color:#333;
+}
+div.page-bbs div.temp-default div.thema-area p.number {}
+div.page-bbs div.temp-default div.thema-area p.number span.user {
+	color:#2d881f;
+}
+
+div.page-bbs div.temp-default ul.bbs-list {}
+div.page-bbs div.temp-default ul.bbs-list li.even {}
+div.page-bbs div.temp-default ul.bbs-list li.odd {
+	
+}
+div.page-bbs div.temp-default ul.bbs-list li p.number span.user {
+	color:#2d881f;
+}
+
+/* 投稿フォーム */
+div.page-bbs div.temp-default table.bbs-form-table {
+	border:#999 solid 1px;
+}
+div.page-bbs div.temp-default table.bbs-form-table th {
+	color:#434343;
+	border-right:#999 solid 1px;
+	
+}
+div.page-bbs div.temp-default table.bbs-form-table th,
+div.page-bbs div.temp-default table.bbs-form-table td {
+	border-bottom:#999 solid 1px;
+}
+div.page-bbs div.temp-default table.bbs-form-table th.title {
+	color:#fff;
+	
+}
+div.page-bbs div.temp-default table.bbs-form-table th span {
+	color:#d00;
+}
+div.page-bbs div.temp-default table.bbs-form-table td {
+	
+}
+div.page-bbs div.temp-default table.bbs-form-table td a {
+	color:#0050ff!important;
+}
+
+/* color-black
+-------------------------------------------- */
+div.page-bbs div.temp-black div#bbs-box {
+	color:#fff;
+	
+}
+
+div.page-bbs div.temp-black div#page-body a {
+	color:#9bbcff;
+}
+
+div.page-bbs div.temp-black div.caution-area-bottom {
+	border-top:#474337 solid 1px;
+}
+
+div.page-bbs div.temp-black ul.bbs-paging li {
+	color:#333;
+}
+
+/* 一覧表示 - トピックス一覧 */
+/* sticky */
+div.page-bbs div.temp-black div.sticky-area table.bbs-list-table {
+	color:#fff;
+	border:none;
+}
+div.page-bbs div.temp-black div.sticky-area table.bbs-list-table th {
+	color:#edca88;
+	
+	border:#101010 solid 1px;
+}
+div.page-bbs div.temp-black div.sticky-area table.bbs-list-table th.title {
+	border-width:1px 0 1px 1px;
+}
+div.page-bbs div.temp-black div.sticky-area table.bbs-list-table th.user,
+div.page-bbs div.temp-black div.sticky-area table.bbs-list-table th.date {
+	border-width:1px 0;
+}
+div.page-bbs div.temp-black div.sticky-area table.bbs-list-table th.comment {
+	border-width:1px 1px 1px 0;
+}
+
+div.page-bbs div.temp-black div.sticky-area table.bbs-list-table tr.even td {
+	color:#999;
+	border-bottom:none;
+}
+div.page-bbs div.temp-black div.sticky-area table.bbs-list-table tr.odd td {
+	
+	border-bottom:none;
+}
+div.page-bbs div.temp-black div.sticky-area table.bbs-list-table tr.even td.title {
+	padding-left:15px;
+	
+}
+div.page-bbs div.temp-black div.sticky-area table.bbs-list-table tr.odd td.title {
+	padding-left:15px;
+	
+}
+
+/* 一般 */
+div.page-bbs div.temp-black table.bbs-list-table {
+	color:#fff;
+}
+div.page-bbs div.temp-black table.bbs-list-table th {
+	
+	border:#181a1a solid 1px;
+}
+div.page-bbs div.temp-black table.bbs-list-table th.title {
+	border-width:1px 0 1px 1px;
+}
+div.page-bbs div.temp-black table.bbs-list-table th.user,
+div.page-bbs div.temp-black table.bbs-list-table th.date {
+	border-width:1px 0;
+}
+div.page-bbs div.temp-black table.bbs-list-table th.comment {
+	border-width:1px 1px 1px 0;
+}
+div.page-bbs div.temp-black table.bbs-list-table tr.even td {
+	color:#999;
+	border-bottom:#2b3239 solid 1px;
+}
+div.page-bbs div.temp-black table.bbs-list-table tr.odd td {
+	
+	border-bottom:#40464c;
+}
+div.page-bbs div.temp-black table.bbs-list-table th.title {}
+div.page-bbs div.temp-black table.bbs-list-table tr.even td.title {
+	padding-left:15px;
+	
+}
+div.page-bbs div.temp-black table.bbs-list-table tr.odd td.title {
+	padding-left:15px;
+	
+}
+div.page-bbs div.temp-black table.bbs-list-table th.comment {}
+div.page-bbs div.temp-black table.bbs-list-table tr.odd td {
+	
+	border-bottom:#2b3239 solid 1px;
+}
+div.page-bbs div.temp-black table.bbs-list-table tr.odd td.date,
+div.page-bbs div.temp-black table.bbs-list-table td.date {
+	color:#999;
+}
+
+/* 一覧表示 - トピックス詳細 */
+div.page-bbs div.temp-black div.thema-area {
+	color:#ddd;
+	border:#708989 solid 1px;
+	
+}
+div.page-bbs div.temp-black div.thema-area h3 {
+	color:#fff;
+}
+div.page-bbs div.temp-black div.thema-area p.number {}
+div.page-bbs div.temp-black div.thema-area p.number span.user {
+	color:#6c3;
+}
+
+div.page-bbs div.temp-black ul.bbs-list {}
+div.page-bbs div.temp-black ul.bbs-list li.even {}
+div.page-bbs div.temp-black ul.bbs-list li.odd {
+	
+}
+div.page-bbs div.temp-black ul.bbs-list li p.number span.user {
+	color:#6c3;
+}
+
+/* 投稿フォーム */
+div.page-bbs div.temp-black table.bbs-form-table {
+	border:#3c3c3c solid 1px;
+}
+div.page-bbs div.temp-black table.bbs-form-table th {
+	color:#fff;
+	border-right:#3c3c3c solid 1px;
+	
+}
+div.page-bbs div.temp-black table.bbs-form-table th,
+div.page-bbs div.temp-black table.bbs-form-table td {
+	border-bottom:#3c3c3c solid 1px;
+}
+div.page-bbs div.temp-black table.bbs-form-table th.title {
+	color:#fff;
+	
+	border-bottom:#3c3c3c solid 1px;
+}
+div.page-bbs div.temp-black table.bbs-form-table th span {
+	color:#fff;
+}
+div.page-bbs div.temp-black table.bbs-form-table td {
+	color:#fff;
+	
+}
+div.page-bbs div.temp-black table.bbs-form-table td a {
+	color:#fff!important;
+}
+
+/* 1000を越えたスレッド表示
+------------------------------------------------------------*/
+div.page-bbs div.caution-1000 {
+	text-align:center;
+	font-weight:bold;
+	color:#fff;
+	padding:5px;
+	
+	margin:0 auto 10px;
+}
+
+div.page-bbs div.caution-authorize {
+	text-align:center;
+	font-weight:bold;
+	color:#333;
+	padding:20px 0;
+	
+	margin:0 auto 10px;
+}
+
+/* temp-default */
+div.page-bbs div.temp-default table.bbs-list-table tr.close td,
+div.page-bbs div.temp-default div.sticky-area table.bbs-list-table tr.close td {
+	color:#999!important;
+	
+	border-bottom:#cecece solid 1px!important;
+}
+div.page-bbs div.temp-default div.sticky-area table.bbs-list-table tr.close td.title {
+	
+}
+div.page-bbs div.temp-default table.bbs-list-table tr.close td.title {
+	
+}
+div.page-bbs div.temp-default table.bbs-list-table tr.close td.title a {
+	color:#999!important;
+}
+/* temp-black */
+div.page-bbs div.temp-black table.bbs-list-table tr.close td,
+div.page-bbs div.temp-black div.sticky-area table.bbs-list-table tr.close td {
+	color:#666!important;
+	
+	border-bottom:#2b3239 solid 1px!important;
+}
+div.page-bbs div.temp-black div.sticky-area table.bbs-list-table tr.close td.title {
+	
+}
+div.page-bbs div.temp-black table.bbs-list-table tr.close td.title {
+	
+}
+div.page-bbs div.temp-black div.sticky-area table.bbs-list-table tr.close td.title a,
+div.page-bbs div.temp-black table.bbs-list-table tr.close td.title a {
+	color:#666!important;
+}
+
+/* エラー
+------------------------------------------------------------*/
+div.page-bbs p.error-title {
+	font-size:160%;
+	font-weight:bold;
+	margin-bottom:20px;
+}
+div.page-bbs div.BOX-balloon-text {
+	font-size:120%;
+	color:#000;
+	line-height:1.5;
+}
+div.page-bbs div.BOX-balloon-text a {
+	color:#00e!important;
+	text-decoration:underline;
+}
+
+div.page-bbs div.errors ul {}
+div.page-bbs div.errors ul li {
+	line-height:1.5;
+	margin-bottom:5px;
+}
+
+/* アドセンス
+------------------------------------------------------------*/
+/* default */
+div.page-bbs div.temp-default div.adsense-box {
+	width:auto!important;
+	margin:10px auto!important;
+	
+	border:none!important;
+}
+div.page-bbs div.temp-default div.adsense-box p {
+	color:#333!important;
+}
+div.page-bbs div.temp-default div.adsense-box ul li a {
+	line-height:1!important;
+	
+	padding-left:27px!important;
+}
+div.page-bbs div.temp-default div.adsense-box ul li a:hover {
+	
+}
+div.page-bbs div.temp-default div.adsense-box ul li span.ads-title {
+	font-size:100%!important;
+	color:#0005ff!important;
+}
+div.page-bbs div.temp-default div.adsense-box ul li span.ads-url {
+	color:#2d881f!important;
+}
+div.page-bbs div.temp-default div.adsense-box ul li span.ads-text {
+	color:#333!important;
+}
+
+/* black */
+div.page-bbs div.temp-black div.adsense-box {
+	width:auto!important;
+	margin:10px auto!important;
+	
+	border:none!important;
+}
+div.page-bbs div.temp-black div.adsense-box p {
+	color:#333!important;
+}
+div.page-bbs div.temp-black div.adsense-box ul li a {
+	line-height:1!important;
+	
+	padding-left:27px!important;
+}
+div.page-bbs div.temp-black div.adsense-box ul li a:hover {
+	
+}
+div.page-bbs div.temp-black div.adsense-box ul li span.ads-title {
+	font-size:100%!important;
+	color:#fff!important;
+}
+div.page-bbs div.temp-black div.adsense-box ul li span.ads-url {
+	color:#fff!important;
+}
+div.page-bbs div.temp-black div.adsense-box ul li span.ads-text {
+	color:#fff!important;
+}
+
+/* + 09/04/03 掲示板ローカルルール
+------------------------------------------------------------*/
+div.page-bbs div.localrule-box {
+	line-height:1.5;
+	padding:10px 15px;
+	margin-bottom:10px;
+}
+div.page-bbs div.temp-default div.localrule-box {
+	color:#333;
+	border:#d6dbd7 solid 2px;
+	
+}
+div.page-bbs div.temp-black div.localrule-box {
+	color:#eccb86;
+	border:#524233 solid 2px;
+	
+}
+
+/* +09/04/09 エラーページ
+---------------------------------------------------------------------------------------- */
+div.page-404 {}
+div.page-404 h2 {
+	font-size:140%;
+	margin-bottom:15px;
+}
+div.page-404 p {
+	line-height:1.5;
+	margin-bottom:10px;
+}
+div.page-404 p strong {
+	font-size:120%;
+}
+
+
+/* +09/06/24 再検索
+---------------------------------------------------------------------------------------- */
+#ReSearchFormWrapper {
+	z-index:1000;
+	position:fixed!important;
+    position:absolute;
+	top:0;
+	right:10px;
+	width:291px;
+	height:140px;
+	
+}
+#ReSearchForm {}
+#ReSearchForm p.ReSearchText {
+	position:absolute;
+	top:50px;
+	left:20px;
+	color:#84baf3;
+	font-weight:bold;
+	font-size:12px;
+	margin-bottom:5px;
+}
+#ReSearchForm p.ReSearchText a {
+	color:#84baf3;
+	text-decoration:none;
+}
+#ReSearchForm p.ReSearchText a:hover {
+	color:#ff4500;
+}
+#ReSearchForm a.ReSearchLink {
+	position:absolute;
+	top:70px;
+	left:20px;
+	right:70px;
+	color:#00f;
+	font-weight:bold;
+	font-size:16px;
+	line-height:1.3;
+	text-decoration:underline;
+}
+#ReSearchForm a.ReSearchLink:hover {
+	color:#ff4500;
+}
+#ReSearchForm a.ReSearchImage {
+	display:block;
+	width:61px;
+	height:60px;
+	position:absolute;
+	top:60px;
+	right:0;
+}
+#ReSearchForm a.ReSearchImage img {
+	width:0;
+	height:0;
+}
+#ReSearchForm a.ReSearchImage:hover {}
+#ReSearchForm a.ReSearchImage:active {
+	outline: none;
+}
+#ReSearchForm a.ReSearchImage:focus {
+-moz-outline-style: none;
+}
+
+#ReSearchForm div.tool-button {
+	text-align:right;
+	position:absolute;
+	top:46px;
+	right:7px;
+}
+#ReSearchForm div.tool-button a {
+	display:block;
+	width:19px;
+	height:17px;
+	
+}
+#ReSearchForm div.tool-button img {
+	width:0;height:0;
+}
+
+*html #ReSearchFormWrapper { behavior: url("/css/usr/ie/iepngfix.htc") }
+
+
+/* +09/07/27 添付画面
+---------------------------------------------------------------------------------------- */
+div.page-attachment {}
+div.page-attachment ul.description-list {}
+div.page-attachment ul.description-list li {
+	line-height:1.5;
+	margin-bottom:5px;
+}
+div.page-attachment table.form-table {
+	color:#666;
+	margin:0 auto;
+}
+div.page-attachment table.form-table tr {}
+div.page-attachment table.form-table th,
+div.page-attachment table.form-table td {
+	border:#999 solid 1px;
+}
+
+div.page-attachment table.form-table th {
+	text-align:center;
+	width:60px;
+	font-weight:bold;
+	
+}
+div.page-attachment table.form-table td {
+	padding:10px;
+	
+}
+div.page-attachment table.form-table td p {
+	margin-top:5px;
+}
+div.page-attachment table.form-table td label {
+	font-weight:bold;
+	font-size:14px;
+	margin-right:5px;
+}
+div.page-attachment input.form-title {
+	padding:3px;
+	border:#999 solid 1px;
+	
+	width:680px;
+}
+div.page-attachment input.form-file {
+	width:680px;
+}
+
+div.page-attachment div.form-submit {
+	text-align:center;
+	margin:10px auto 0;
+}
+
+/* +09/08/05 forbbiden
+---------------------------------------------------------------------------------------- */
+div.page-forbbiden {}
+
+div.page-forbbiden ul {
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+div.forbbiden-body {
+	font-size:13px;
+	color:#333;
+	text-align:center;
+	padding:10px;
+	
+}
+div.forbbiden-body div.message-box {
+	text-align:left;
+	width:798px;
+	
+	margin:0 auto 5px;
+}
+div.forbbiden-body div.message-box div.message-text {
+	padding:0 10px 10px 20px;
+}
+div.forbbiden-body div.message-box div.message-text p {
+	line-height:1.5;
+	padding-top:10px;
+}
+div.forbbiden-body div.message-box div.message-text ul {
+	float:right;
+}
+div.forbbiden-body div.message-box div.message-text ul li {
+	margin-bottom:10px;
+}
+div.forbbiden-body div.caution-box {
+	text-align:right;
+	width:798px;
+	margin:0 auto 50px;
+}
+div.forbbiden-body div.start-box {
+	width:798px;
+	margin:0 auto;
+	padding:70px 0 20px;
+	text-align:center;
+	
+}
+div.forbbiden-body div.start-box ul {}
+div.forbbiden-body div.start-box ul li {
+	display:inline;
+	padding:0 20px;
+}
+
+/* +09/09/01 サイドカラムバナー
+---------------------------------------------------------------------------------------- */
+div.side-banner {}
+div.side-banner div.box-inner {
+	text-align:center;
+}
+div.side-banner div.box-inner ul {}
+div.side-banner div.box-inner ul li {
+	text-align:center;
+	margin-bottom:5px;
+}
+
+/* +09/10/06 ヘッダステッカー
+---------------------------------------------------------------------------------------- */
+div#header-sticker {
+	z-index:100;
+	position:absolute;
+	top:40px;
+	right:10px;
+}
+div#header-sticker a {
+	display:block;
+	width:189px;
+	height:54px;
+	
+	text-indent:-9999px;
+	overflow:hidden;
+}
+div#header-sticker a:hover {
+	
+}
+*html div#header-sticker a:hover,
+*html div#header-sticker a { behavior: url("/css/usr/ie/iepngfix.htc") }
+
+div#header-sticker a:active {
+	outline: none;
+}
+div#header-sticker a:focus {
+	-moz-outline-style: none;
+}
+
+/* +09/10/08 メンバー一覧
+---------------------------------------------------------------------------------------- */
+div.page-member {}
+div.page-member div.member-help a {
+	color: #034cd9;
+	text-decoration:underline;
+}
+div.page-member div.member-help a:visited {
+	color: #96c;
+	text-decoration:underline;
+}
+div.page-member div.member-help a:hover {
+	color:#f60!important;
+	text-decoration:none;
+}
+div.page-member div.member-help a:active {
+	color: #f60!important;
+	text-decoration:none;
+}
+
+div.page-member div.member-help {
+	float:right;
+	width:300px;
+	color:#333;
+	font-size:12px;
+	
+}
+div.page-member div.member-help-inner {
+	padding:10px;
+}
+div.page-member div.member-help h3 {
+	text-align:center;
+	font-weight:bold;
+	font-size:16px;
+	padding-bottom:10px;
+	border-bottom:#fff solid 1px;
+	margin-bottom:10px;
+}
+div.page-member div.member-help ul {
+	margin:10px 0;
+	padding:0 0 10px 15px;
+	list-style:deric;
+	border-bottom:#fff solid 1px;
+}
+div.page-member div.member-help ul li {
+	margin:0 0 5px 0;
+}
+div.page-member p.member-entry-sub {
+	font-weight:bold;
+	text-align:center;
+}
+div.page-member p.member-entry-sub a {
+	display:block;
+	width:200px;
+	margin:10px auto 5px;
+	text-align:center;
+	padding:5px 0;
+	font-size:16px;
+	font-weight:bold;
+	
+	border:#ccc solid 1px;
+}
+div.page-member div.member-help p.member-caution {
+	font-size:10px;
+	text-align:center;
+	padding:0;
+	margin:0 auto;
+}
+
+
+div.page-member p.member-entry-sub a:hover {
+	color:#fff289;
+}
+div.page-member p.member-number {
+	margin:10px 0;
+	font-weight:bold;
+}
+div.page-member ul.member-list {
+	list-style:none;
+	margin:0 0 0 10px;
+	padding:0;
+}
+div.page-member ul.member-list li {
+	margin-bottom:5px;
+}
+div.page-member ul.member-list li img {
+	margin-right:2px;
+	vertical-align:middle;
+}
+div.page-member p.member-entry-main {
+	margin:20px 0;
+}
+div.page-member p.member-entry-main input {
+	font-size:16px;
+	width:180px;
+}
+
+/* +10/01/20 アクセス解析
+---------------------------------------------------------------------------------------- */
+div.page-status {
+	text-align:center;
+}
+
+div.page-status div#page-header p.login {
+	text-align:right;
+	width:900px;
+	margin:0 auto;
+}
+
+div.page-status div.status-body {
+	text-align:left;
+	width:900px;
+	margin:0 auto;
+}
+
+/* 生ログ表示 */
+
+div.page-status div.iframe-box {
+	width:898px;
+	border:#dbdad9 solid;
+	border-width:0 1px 1px;
+	
+	padding:5px 0 10px;
+	margin:0 auto;
+}
+div.page-status div.iframe-box-inner {
+	border:#dbdad9 solid 1px;
+	margin:0 10px;
+	padding:5px;
+	
+}
+div.page-status iframe#rawlog_frame {
+	padding:5px;
+	width:99%;
+	height:400px;
+	border:0;
+	
+}
+body.page-status {
+	text-align:left;
+	font-size:13px;
+	line-height:1;
+	color:#444;
+	
+	padding:0!important;
+	margin:3px 10px 3px 3px!important;
+}
+body.page-status table.table-rowlog {
+	width:100%;
+	border:#a0e0e2 solid 1px;
+	margin:0 0 10px;
+}
+body.page-status table.table-rowlog tr {}
+body.page-status table.table-rowlog th,
+body.page-status table.table-rowlog td {
+	text-align:left;
+	padding:5px 10px;
+}
+body.page-status table.table-rowlog td {
+	border-bottom:#30a8a9 dotted 1px;
+}
+body.page-status table.table-rowlog th {
+	font-weight:bold;
+	color:#fff;
+	
+	width:1%;
+	white-space:nowrap;
+	border-bottom:#a0e0e0 solid 1px;
+}
+body.page-status table.table-rowlog th.time {
+	color:#444;
+	
+	border-bottom:#a0e0e2 solid 1px;
+}
+body.page-status table.table-rowlog tr.last {}
+body.page-status table.table-rowlog tr.last th,
+body.page-status table.table-rowlog tr.last td {
+	border-bottom:#a0e0e2 solid 1px;
+}
+
+/* +10/02/05 アクセス解析?バナー
+---------------------------------------------------------------------------------------- */
+div#analyzer-side-box {
+	width:154px;
+	margin:0 auto;
+}
+div#analyzer-side-box a {
+	color:#000099;
+}
+div#analyzer-side-box a:visited {
+	color:#6699ff;
+}
+div.analyzer-title {
+	text-align:center;
+	color:#fff;
+	font-size:10px;
+	padding:3px 0;
+}
+div.analyzer-side-box-inner {
+	
+	padding:2px;
+}
+div#analyzer-side-box ul {
+	padding-top:5px;
+}
+div#analyzer-side-box ul li {
+	padding-left:13px;
+	line-height:1.3;
+	
+	padding-bottom:5px;
+}
+div.analyzer-banner a {
+	display:block;
+	width:150px;
+	height:32px;
+	overflow: hidden;
+}
+div.analyzer-banner a img {
+	height:0;
+	width:0;
+}
+
+/* 青
+------------------------------------------------------------*/
+div.analyzer-color-blue {
+	border:solid 1px #007fc8;
+}
+div.analyzer-color-blue div.analyzer-title {
+	
+}
+div.analyzer-color-blue div.analyzer-side-box-inner {
+	color:#e3f6fc;
+}
+div.analyzer-color-blue div.analyzer-banner a {
+	
+}
+div.analyzer-color-blue div.analyzer-banner a:hover {
+	
+}
+
+/* 緑
+------------------------------------------------------------*/
+div.analyzer-color-green {
+	border:solid 1px #419b00;
+}
+div.analyzer-color-green div.analyzer-title {
+	
+}
+div.analyzer-color-green div.analyzer-side-box-inner {
+	color:#e1f5da;
+}
+div.analyzer-color-green div.analyzer-banner a {
+	
+}
+div.analyzer-color-green div.analyzer-banner a:hover {
+	
+}
+
+/* ピンク
+------------------------------------------------------------*/
+div.analyzer-color-pink {
+	border:solid 1px #ff3399;
+}
+div.analyzer-color-pink div.analyzer-title {
+	
+}
+div.analyzer-color-pink div.analyzer-side-box-inner {
+	color:#ffedf6;
+}
+div.analyzer-color-pink div.analyzer-banner a {
+	
+}
+div.analyzer-color-pink div.analyzer-banner a:hover {
+	
+}
+
+/* 赤
+------------------------------------------------------------*/
+div.analyzer-color-red {
+	border:solid 1px #990000;
+}
+div.analyzer-color-red div.analyzer-title {
+	
+}
+div.analyzer-color-red div.analyzer-side-box-inner {
+	color:#f5d0d4;
+}
+div.analyzer-color-red div.analyzer-banner a {
+	
+}
+div.analyzer-color-red div.analyzer-banner a:hover {
+	
+}
+
+
+/* 黒
+------------------------------------------------------------*/
+div.analyzer-color-black {
+	border:solid 1px #666;
+}
+div.analyzer-color-black div.analyzer-title {
+	
+}
+div.analyzer-color-black div.analyzer-side-box-inner {
+	color:#333;
+}
+div.analyzer-color-black div.analyzer-banner a {
+	
+}
+div.analyzer-color-black div.analyzer-banner a:hover {
+	
+}
+
+/* エラー表示
+---------------------------------------------------------------------------------------- */
+div.errors {}
+div.errors ul li {
+	list-style-type:disc;
+}
+
+
+/* for IE6
+---------------------------------------------------------------------------------------- */
+*html div#wiki-menu p a,
+*html div#wiki-menu p a:hover,
+*html div#wiki-header div.column-inner-2  { behavior: url("/css/usr/ie/iepngfix.htc") }
+
+
+/* googlemap
+---------------------------------------------------------------------------------------- */
+div.googlemap_display div.googlemap-balloon-box {}
+div.googlemap_display div.googlemap-balloon-box div.image {
+	float:left;
+	width:160px;
+	height:100px;
+	overflow:hidden;
+	text-align:center;
+	border:#ccc solid 1px;
+	
+	margin-right:10px;
+}
+div.googlemap_display div.googlemap-balloon-box div.icon {
+	float:left;
+	margin-right:10px;
+}
+div.googlemap_display div.googlemap-balloon-box div.summary {
+	word-break: break-all;
+	overflow:hidden;
+	line-height:1.5;
+	font-size:80%;
+	padding-right:10px;
+}
+
+/* +10/12/16 フロートお知らせ枠
+---------------------------------------------------------------------------------------- */
+#lwgp_sticker {
+	z-index:1000;
+	position:fixed;
+	bottom:0;
+	left:0;
+	width:100%;
+	height:80px;
+	text-align:center;
+	font-size:14px!important;
+	color:#fff!important;
+	
+}
+*html #lwgp_sticker { behavior: url("/css/usr/ie/iepngfix.htc") }
+#lwgp_sticker_lead {
+	padding:15px 0;
+	line-height:1.7!important;
+}
+#lwgp_sticker_link {}
+#lwgp_sticker_link a {
+	padding:10px 30px;
+	font-weight:bold!important;
+	color:#000!important;
+	text-decoration:none!important;
+	
+}
+
+#lwgp_sticker_hidden_button_box {
+	position:absolute;
+	top:5px;
+	left:10px;
+}
+#lwgp_sticker_hidden_button_box a {
+	font-size:12px!important;
+	line-height:1.3!important;
+	color:#fff!important;
+	text-decoration:underline!important;
+}
+#lwgp_sticker_close_button_box {
+	position:absolute;
+	top:5px;
+	right:10px;
+}
+
+/* +11/01/19 ページ更新履歴
+---------------------------------------------------------------------------------------- */
+div.plugin-recentpage {}
+div.plugin-recentpage p.title {
+	font-weight:bold;
+	padding-left:10px;
+}
+div.plugin-recentpage ul {
+	margin:10px 0 0;
+	padding:0 5px;
+	list-style:none;
+}
+div.plugin-recentpage ul li {
+	list-style:none;
+	line-height:18px;
+	padding:0 0 0 20px;
+	margin:0 0 10px;
+	
+}
+div.plugin-recentpage ul li a {
+	margin-left:10px;
+	font-weight:bold;
+}
+
+/* +11/02/25 ソーシャルボタン
+------------------------------------------------------ */
+#page-social-link-top,
+#page-social-link-bottom {
+	text-align:right;
+	padding:10px 0 5px;
+}
+#page-social-link-top img,
+#page-social-link-top iframe,
+#page-social-link-bottom img,
+#page-social-link-bottom iframe {
+	vertical-align:middle;
+}
+#page-social-link-top span.mixi {
+	margin-right:10px;
+}
+#page-social-link-bottom span {
+	margin-left:5px;
+}
+
+/* +11/04/01 お知らせ枠
+---------------------------------------------------------------------------------------- */
+div#wiki-message-outer {
+	z-index:1001;
+	position:absolute;
+	top:145px;
+	right:16px;
+	width:285px;
+	padding-top:4px;
+	
+	word-wrap:break-word;
+}
+div#wiki-message {
+	padding-bottom:10px;
+	
+}
+div#wiki-message-inner {
+	
+}
+div#wiki-message-button {
+	padding-right:4px;
+	text-align:right;
+}
+div#wiki-message-button a {
+	color:#000;
+}
+div#wiki-message-title {
+	font-weight:bold;
+	font-size:14px;
+	line:height:1.3;
+	color:#000;
+	padding:0 15px 10px;
+}
+div#wiki-message-body {
+	padding:0 15px 5px;
+	color:#333;
+	font-size:12px;
+	line-height:1.7;
+}
+div#wiki-message-body a {
+	color:#00f;
+	text-decoration:underline;
+}
+div#wiki-message-body a:hover {
+	color:#f00;
+	text-decoration:none;
+}
+
+/* for IE6
+---------------------------------------------------------------------------------------- */
+*html div#page-header div.title h2 img,
+*html div#wiki-message-outer,
+*html div#wiki-message,
+*html div#wiki-message-inner { behavior: url("/css/usr/ie/iepngfix.htc") }
+
+
+
+/* clear
+---------------------------------------------------------------------------------------- */
+/* ie \*/
+* html div#common-header div.header-tool,
+* html div.page-bbs ul.bbs-list li,
+* html div.caution-area,
+* html ul.bbs-arrange,
+* html div.tool-area,
+* html div#main div.BOX-balloon,
+* html div.sidecolumn ul.editorList,
+* html ul#navigation-m,
+* html div#page-footer ul,
+* html div.inner,
+* html ul.page-list li,
+* html div#wiki-content,
+* html div.column-inner,
+* html div.column-inner-3,
+* html div.box-inner,
+* html div#banner,
+* html div#wiki-menu,
+* html div#page-header div.title,
+* html div.tags-box p.title,
+* html div.feed-box p.title,
+* html div.user-area,
+* html div.user-area div.toggle-title,
+* html .clearfix {
+	zoom:1;
+}
+*:first-child+html div#common-header div.header-tool,
+*:first-child+html div.page-bbs ul.bbs-list li,
+*:first-child+html ul.bbs-arrange,
+*:first-child+html div.caution-area,
+*:first-child+html div.tool-area,
+*:first-child+html div#main div.BOX-balloon,
+*:first-child+html div.sidecolumn ul.editorList,
+*:first-child+html ul#navigation-m,
+*:first-child+html div#page-footer ul,
+*:first-child+html div.inner,
+*:first-child+html ul.page-list li,
+*:first-child+html div#wiki-content,
+*:first-child+html div.column-inner,
+*:first-child+html div.column-inner-3,
+*:first-child+html div.box-inner,
+*:first-child+html div#banner,
+*:first-child+html div#wiki-menu,
+*:first-child+html div#page-header div.title,
+*:first-child+html div.tags-box p.title,
+*:first-child+html div.feed-box p.title,
+*:first-child+html div.user-area,
+*:first-child+html div.user-area div.toggle-title,
+*:first-child+html .clearfix {
+	zoom:1;
+}
+
+/* modern brow */
+div#common-header div.header-tool:after,
+div.page-bbs ul.bbs-list li:after,
+ul.bbs-arrange:after,
+div.caution-area:after,
+div.tool-area:after,
+div#main div.BOX-balloon:after,
+div.sidecolumn ul.editorList:after,
+ul#navigation-m:after,
+div#page-footer ul:after,
+div.inner:after,
+ul.page-list li:after,
+div#wiki-content:after,
+div.column-inner:after,
+div.column-inner-3:after,
+div.box-inner:after,
+div#common-header:after,
+div#banner:after,
+div#wiki-menu:after,
+div#page-header div.title:after,
+div.tags-box p.title:after,
+div.feed-box p.title:after,
+div.user-area:after,
+div.user-area div.toggle-title:after,
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	height: 0;
+	visibility: hidden;
+}
+
+/* MacIE onry \*//*/
+div#common-header div.header-tool,
+div.page-bbs ul.bbs-list li,
+ul.bbs-arrange,
+div.caution-area,
+div.caution-area,
+div.tool-area,
+div#main div.BOX-balloon,
+div.sidecolumn ul.editorList,
+ul#navigation-m,
+div#page-footer ul,
+div.inner,
+ul.page-list li,
+div#wiki-content,
+div.column-inner,
+div.column-inner-3,
+div.box-inner,
+div#common-header,
+div#banner,
+div#wiki-menu,
+div#page-header div.title,
+div.tags-box p.title,
+div.feed-box p.title,
+div.user-area,
+div.user-area div.toggle-title,
+.clearfix {
+	display: inline-table;
+}/* end */

@@ -1,0 +1,912 @@
+@charset "EUC-JP";
+/* ----------------------------------------------------------------------------------------------------------------
+　テンプレート名：ロイヤルブルー（2カラム）
+---------------------------------------------------------------------------------------------------------------- */
+body {
+	font-size:14px;
+	line-height: 1.4;
+	
+	color: #000;
+	font-family: Helvetica, sans-serif;
+	
+}
+
+a:link { color:#5558fb;text-decoration:none;}
+a:visited { color:#3e5afe;text-decoration:none;}
+a:hover { color:#9192ff;text-decoration:underline;}
+a:active { color:#9192ff;text-decoration:underline;}
+
+
+/* layout -- レイアウト
+     各カラムの幅を変更したい場合は、ここで指定して下さい。
+     何も指定しない場合は「#sub = 250px」「#extra = 200px」となります。
+---------------------------------------------------------------------------------------------------------------- */
+div#wiki-content div#main {
+	margin:0 0 0 -160px;
+}
+div#wiki-content div#main div.column-inner {
+	margin:0 0 0 170px;
+}
+div#wiki-content div#sub {
+	width:160px;
+}
+div#wiki-content div#extra {
+	width:160px;
+}
+
+/* #container -- body直下の指定
+     共通ヘッダを含む幅を指定したい場合はここで幅を指定して下さい。
+     ただし775px以下の大きさには指定しないで下さい
+---------------------------------------------------------------------------------------------------------------- */
+div#container {}
+
+/* #common-footer -- 共通フッタ
+---------------------------------------------------------------------------------------------------------------- */
+div#common-footer {
+	text-align:center;
+	font-size:13px;
+	
+	padding:20px 0;
+}
+div#common-footer div.column-inner {
+	width:99%;
+	margin:0 auto;
+}
+
+
+/* #wiki-container -- 個別ウィキ用のエリア
+     固定の共通ヘッダを除くの幅を指定したい場合はここで幅を指定して下さい。
+---------------------------------------------------------------------------------------------------------------- */
+div#wiki-container {
+	width:99%;
+	margin:10px auto;
+}
+
+/* #wiki-header
+     タイトルの背景に画像を指定したい場合はここで指定して下さい。
+---------------------------------------------------------------------------------------------------------------- */
+div#wiki-header {
+	padding:20px 0;
+	
+}
+div#wiki-header div.column-inner {
+	width:99%;
+	margin:0 auto;
+}
+div#wiki-header div.column-inner-2 {}
+div#wiki-header div.column-inner-3 {}
+div#wiki-title {
+	color:#000;
+	font-weight:bold;
+	font-size:30px;
+	line-height:1.2;
+}
+div#wiki-title h1 {}
+div#wiki-title a {color:#000;text-decoration:none;}
+div#wiki-title a:link {}
+div#wiki-title a:visited {}
+div#wiki-title a:hover {text-decoration:underline;}
+div#wiki-title a:active {}
+
+div#wiki-description {
+	margin-top:5px;
+}
+div#wiki-description p {
+	font-size:14px;
+	color:#555d66;
+}
+div#header-sticker {
+	top: 50px;
+}
+
+/* #wiki-menu
+---------------------------------------------------------------------------------------------------------------- */
+div#wiki-menu {
+	text-align:center;
+	
+}
+div#wiki-menu div.box-inner {
+	position:relative;
+	text-align:left;
+	width:99%;
+	height:30px;
+	margin:0 auto;
+}
+
+ul#navigation-m {
+	position:absolute;
+	left:0;
+	top:8px;
+}
+ul#navigation-m li {
+	line-height:1;
+	zoom:1;
+	padding:2px 10px;
+	border-right:#101010 solid 1px;
+	border-left:#727272 solid 1px;
+}
+ul#navigation-m li.top {
+	border-left:none;
+}
+ul#navigation-m li.edit {
+	border-right:none;
+}
+ul#navigation-m li.logout {
+	border:none;
+	margin-left:20px;
+}
+
+ul#navigation-m li a {
+	color:#fff;
+	font-weight:bold;
+	text-decoration:none;
+}
+ul#navigation-m li a:hover {
+	text-decoration:underline;
+}
+
+div#wiki-menu div.search-box {
+	padding-top:4px;
+}
+div#wiki-menu div.search-box form {}
+div#wiki-menu div.search-box ul {}
+div#wiki-menu div.search-box ul li {
+	display:block;
+	float:left;
+	margin-left:3px;
+}
+div#wiki-menu div.search-box ul li input.form-text {}
+div#wiki-menu div.search-box ul li input.form-button {
+	
+	text-indent:-99999px;
+	border:none;
+	display: block;
+	height: 21px;
+	width: 56px;
+}
+
+div#wiki-menu p {
+	padding-top:4px;
+	margin:0 0 0 10px;
+}
+div#wiki-menu p a {
+	
+	display: block;
+	height: 21px;
+	width: 80px;
+}
+div#wiki-menu p a:hover {
+	
+}
+
+/* clear */
+* html ul#navigation-m,
+* html div#wiki-menu div.box-inner {
+	zoom:1;
+}
+*:first-child+html ul#navigation-m,
+*:first-child+html div#wiki-menu div.box-inner {
+	zoom:1;
+}
+ul#navigation-m:after,
+div#wiki-menu div.box-inner:after {
+	content: ".";
+	display: block;
+	clear: both;
+	height: 0;
+	visibility: hidden;
+}
+
+
+/* #wiki-content
+---------------------------------------------------------------------------------------------------------------- */
+div#wiki-content {
+	width:99%;
+	margin:10px auto;
+}
+
+/* #main
+---------------------------------------------------------------------------------------------------------------- */
+div#main {}
+div#main div.column-inner {}
+
+/* #main - page-container
+-------------------------------------------------------- */
+div#page-container {
+	
+}
+div#page-container div.box-inner {}
+
+/* #main - page-header
+-------------------------------------------------------- */
+div#page-header {
+	margin-bottom:10px;
+}
+div#page-header div.box-inner {}
+div#page-header div.title {
+	color:#fff;
+	
+	margin-bottom:5px;
+}
+div#page-header div.title a {
+	color:#fff;
+}
+div#page-header div.title div.inner {
+	padding:10px;
+}
+div#page-header div.title h2 {
+	color:#fff;
+	line-height:1;
+	zoom:1;
+	font-size:18px;
+}
+div#page-header div.title h2 a {
+	color:#fff;
+	text-decoration:none;
+}
+div#page-header div.title h2 a:hover {
+	text-decoration:underline;
+}
+div#page-header div.title p.history {
+	font-size:12px;
+	right:10px;
+	bottom:10px;
+}
+div#page-header div.title p.history a {
+	color:#fff;
+	text-decoration:none;
+}
+div#page-header div.title p.history a:hover {
+	text-decoration:underline;
+}
+div#page-header p.update {
+	font-size:10px;
+	padding-right:10px;
+}
+
+/* #main - page-body
+-------------------------------------------------------- */
+div#page-body {
+	padding:0 15px;
+}
+div#page-body div.box-inner {}
+
+/* #main - page-footer
+-------------------------------------------------------- */
+div#page-footer {}
+div#page-footer div.box-inner {}
+
+div#information-box {
+	position: relative;
+	border:#cdcdcd solid;
+	border-width:1px 0;
+	padding:20px;
+	
+	margin:0 -15px;
+}
+
+/* #main tag
+---------------------------------------------------------------------------------------------------------------- */
+div.user-area {
+	line-height:1.7em;
+	
+}
+div.sidecolumn div.user-area {
+	
+}
+div.footer-footnote hr,
+div.user-area hr {
+	color:#3973e0;
+	
+}
+div.user-area table th {
+	
+	border:#658fc3 solid 1px;
+}
+div.user-area table td {
+	
+	border:#658fc3 solid 1px;
+}
+div.user-area div.title-1 h3,
+div.user-area div.title-2 h4 {
+	font-weight:bold;
+	font-size:120%;
+}
+div.user-area div.title-1 {
+	
+	padding:5px 10px;
+}
+div.user-area div.title-1 h3 {
+	color:#fff;
+}
+div.user-area div.title-1 h3 a {
+	color:#fff;
+}
+div.user-area div.title-1 h3 a:hover {
+	text-decoration:none;
+}
+div.user-area div.title-2 {
+	padding:5px 10px;
+	
+	border:#658fc3 solid;
+	border-width:1px 0;
+}
+div.user-area div.title-2 h4 {
+	color:#112d58;
+}
+div.user-area div.title-2 h4 a {
+	color:#112d58;
+}
+div.user-area div.title-2 h4 a:hover {
+	text-decoration:none;
+}
+div.user-area div.title-3 {
+	padding:0 5px;
+	border-left:#3973e0 solid 5px;
+}
+div.user-area div.title-3 h5 {
+	font-weight:bold;
+	color:#112d58;
+}
+div.user-area div.title-3 h5 a {
+	color:#112d58;
+}
+div.user-area div.title-3 h5 a:hover {
+	text-decoration:none;
+}
+div.user-area ul.list-1,
+div.user-area ul.list-2,
+div.user-area ul.list-3 {
+	padding:0;
+	margin:10px 0;
+	list-style:none;
+}
+div.user-area ol {
+	padding:0;
+	margin-top:10px!important;
+	margin-bottom:10px!important;
+}
+div.user-area ul.list-1 li,
+div.user-area ul.list-2 li,
+div.user-area ul.list-3 li {
+	padding-left:15px;
+	line-height:1.3;
+}
+div.user-area ul.list-1 li {
+	
+}
+div.user-area ul.list-2 li {
+	
+}
+div.user-area ul.list-3 li {
+	
+}
+
+
+/* トグル
+--------------------------------------------- */
+div.user-area a.toggle-link-close, div.user-area a.toggle-link-open {
+	height:18px;
+	width:18px;
+}
+div.user-area a.toggle-link-close {
+	
+}
+div.user-area a.toggle-link-open {
+	
+}
+
+/* タグリスト
+--------------------------------------------- */
+div.tags-box p.title a.textLink {
+	font-weight:normal;
+}
+div.tags-open a.imageLink {
+	
+}
+div.tags-close a.imageLink {
+	
+}
+
+/* pad記法
+--------------------------------------------- */
+div.user-area div.pad-inner {
+	border: 1px solid #f8c618;
+}
+
+/* BOX系
+--------------------------------------------- */
+div.user-area blockquote {
+	color:#000;
+	padding:20px 10px;
+	
+	border:none;
+	margin:10px auto;
+}
+div.user-area pre {
+	padding:10px;
+	color:#000;
+	
+	border:none;
+	margin:10px auto;
+}
+div.user-area pre.AA {
+	color:#000;
+	
+}
+div.user-area pre.prettyprint {
+	
+	border:#ccc solid 1px;
+	margin:10px auto;
+}
+
+/* フィードボックス
+--------------------------------------------- */
+div.feed-box {
+	font-size:13px;
+	color:#333;
+	border:none;
+	
+	border:#658fc3 solid 1px;
+}
+div.feed-box p.title {
+	color:#fff;
+	
+}
+div.feed-box p.title a {
+	color:#fff;
+	text-decoration:none;
+}
+div.feed-box p.title a:hover {
+	text-decoration:underline;
+}
+div.feed-box p.title span {
+	padding-top:5px;
+	padding-left:5px;
+	display:inline;
+	margin-right:0;
+	
+}
+div.feed-box p.title a.textLink {
+	font-weight:bold;
+	line-height:16px;
+}
+div.feed-box ul.list-pagelist-on a {
+	margin-left:5px;
+	font-weight:bold;
+}
+
+/* 吹き出し　左
+--------------------------------------------- */
+div#main div.BOX-balloon-left div.BOX-balloon-image {
+	float:left;
+	width:60px;
+}
+div#main div.BOX-balloon-left div.BOX-balloon-text {
+	margin-left:65px;
+}
+div#main div.BOX-balloon-left div.balloon-top {
+	padding-left:14px;
+	
+}
+div#main div.BOX-balloon-left div.balloon-top-inner {
+	height:10px;
+	
+}
+div#main div.BOX-balloon-left div.balloon-bottom {
+	padding-left:14px;
+	
+}
+div#main div.BOX-balloon-left div.balloon-bottom-inner {
+	height:10px;
+	
+}
+div#main div.BOX-balloon-left div.balloon-body {
+	
+}
+div#main div.BOX-balloon-left div.balloon-body-inner {
+	
+	padding-left:11px;
+}
+div#main div.BOX-balloon-left div.balloon-body-inner2 {
+	border-right:#0579e1 solid 1px;
+	
+	padding:0 10px 5px;
+}
+
+/* 吹き出し　右 */
+div#main div.BOX-balloon-right div.BOX-balloon-image {
+	float:right;
+	width:60px;
+}
+div#main div.BOX-balloon-right div.BOX-balloon-text {
+	margin-right:65px;
+}
+div#main div.BOX-balloon-right div.balloon-top {
+	padding-left:4px;
+	
+}
+div#main div.BOX-balloon-right div.balloon-top-inner {
+	height:10px;
+	
+}
+div#main div.BOX-balloon-right div.balloon-bottom {
+	padding-left:4px;
+	
+}
+div#main div.BOX-balloon-right div.balloon-bottom-inner {
+	height:10px;
+	
+}
+div#main div.BOX-balloon-right div.balloon-body {
+	
+}
+div#main div.BOX-balloon-right div.balloon-body-inner {
+	
+	padding-right:11px;
+}
+div#main div.BOX-balloon-right div.balloon-body-inner2 {
+	border-left:#a1b6c3 solid 1px;
+	
+	padding:0 10px 5px;
+}
+
+
+/* .sidecolumn
+---------------------------------------------------------------------------------------------------------------- */
+/* #sub
+-------------------------------------------------------- */
+div#wiki-content div#sub {}
+div#wiki-content div#sub div.column-inner {}
+
+div#sub div.form-box form {}
+div#sub div.form-box form input.form-text {}
+div#sub div.form-box form input.form-button {}
+
+/* #extra
+-------------------------------------------------------- */
+div#wiki-content div#extra {}
+div#wiki-content div#extra div.column-inner {}
+
+div#extra div.form-box form {}
+div#extra div.form-box form input.form-text {}
+div#extra div.form-box form input.form-button {}
+
+
+/* .sidecolumn
+      「extra」「sub」どちらのカラムにも共通するものはここで指定して下さい。
+-------------------------------------------------------- */
+div.sidecolumn {}
+div.sidecolumn div.column-inner {}
+
+div.side-box,div.free-box,div.sidecolumn div.form-box {
+	padding-bottom:10px;
+	
+	margin-bottom:10px;
+}
+div.side-box div.box-inner,div.free-box div.box-inner,div.sidecolumn div.form-box div.box-inner {}
+div.side-box div.title,div.free-box div.title,div.sidecolumn div.form-box div.title {
+	text-align:center;
+	padding:10px;
+	
+	margin-bottom:10px;
+}
+div.side-box div.title h2,div.free-box div.title h2,div.sidecolumn div.form-box div.title h2 {
+	line-height:1;
+	zoom:1;
+	color:#fff;
+	font-weight:bold;
+	font-size:18px;
+}
+div.side-box div.body,div.free-box div.body,div.sidecolumn div.form-box div.body {
+	padding:0 10px;
+	line-height:1.3;
+}
+
+div.side-box ul.parent-list li h3 {
+	color:#474747;
+}
+div.side-box ul.parent-list li h3 a {
+	color:#474747;
+	text-decoration:none;
+}
+div.side-box ul.child-list {}
+div.side-box ul.child-list li {}
+div.side-box ul.child-list li a {}
+
+div.side-box div.tagcloud {
+	
+	padding:5px;
+}
+
+div.sidecolumn div.form-box form input.form-text {
+	width:140px;
+}
+
+/* コメント一覧?トラックバック一覧
+     コメントは個別ページ（個数制限あり、「#page-footer」内に配置）、コメントページ（全件表示「#page-body」内に配置）
+--------------------------------------------------------------------------------------------------------------- */
+div#comment-box,
+div#trackback-box {}
+
+div#comment-box div.title,
+div#trackback-box div.title {
+	
+	padding:5px;
+	margin-bottom:10px;
+}
+div#comment-box div.title h3,
+div#trackback-box div.title h3 {
+	color:#fff;
+}
+div#comment-box div.body,
+div#trackback-box div.body {}
+div#comment-box div.body div.text,
+div#trackback-box div.body div.text {
+	padding:0 5px 5px;
+	border-bottom:#cdcdcd solid 1px;
+	margin-bottom:20px;
+}
+div#comment-box div.body div.text p,
+div#trackback-box div.body div.text p {
+	line-height:1.5;
+}
+div#comment-box div.body div.text span.posted,
+div#trackback-box div.body div.text span.posted {
+	font-size:12px;
+}
+
+/* 個別ページ内での設定 */
+div.page-index div#comment-box {
+	padding-top:10px;
+	border-top:#3973e0 solid 1px;
+	margin-top:20px;
+}
+div.page-index div#comment-box div.title {
+	color:#333;
+	padding:0 0 0 20px;
+	
+	margin-bottom:10px;
+}
+div.page-index div#comment-box div.title h3 {
+	color:#3973e0;
+}
+div.page-index div#comment-box div.body {}
+div.page-index div#comment-box div.body div.text {}
+div.page-index div#comment-box div.body div.text p {}
+div.page-index div#comment-box div.body div.text span.posted {}
+
+/* コメントページ内での設定 */
+div.page-comment div#comment-box {}
+div.page-comment div#comment-box div.title {}
+div.page-comment div#comment-box div.body {}
+div.page-comment div#comment-box div.body div.text {}
+div.page-comment div#comment-box div.body div.text p {}
+div.page-comment div#comment-box div.body div.text span.posted {}
+
+/* トラックバックフォーム */
+div#trackback-box div.entry {}
+div#trackback-box div.entry label {
+	color:#3973e0;
+	padding:0 0 0 20px;
+	
+	margin-bottom:10px;
+}
+div#trackback-box div.entry input {
+	margin-left:20px;
+}
+
+/* 投稿フォーム */
+div.page-comment div#page-body div.form-box {}
+div.page-comment div#page-body div.form-box div.title {
+	color:#3973e0;
+	padding:0 0 0 20px;
+	
+	margin-bottom:10px;
+}
+div.page-comment div#page-body div.form-box div.title h3 {}
+div.page-comment div#page-body div.form-box table {}
+div.page-comment div#page-body div.form-box table tr {}
+div.page-comment div#page-body div.form-box table th {
+	padding:0 0 10px 20px;
+}
+div.page-comment div#page-body div.form-box table td {
+	padding:0 0 10px;
+}
+div.page-comment div#page-body div.form-box table td p {
+	margin:10px auto;
+}
+div.page-comment div#page-body div.form-box table td input#author {
+	width:200px;
+}
+div.page-comment div#page-body div.form-box table td input#email {
+	width:200px;
+}
+div.page-comment div#page-body div.form-box table td input#url {
+	width:200px;
+}
+div.page-comment div#page-body div.form-box table td input#captcha {}
+div.page-comment div#page-body div.form-box table td textarea {
+	width:400px;
+	height:100px;
+}
+div.page-comment div#page-body div.form-box table td.button {
+	padding-left:100px;
+}
+div.page-comment div#page-body div.form-box table td.button input {}
+
+/* ページ一覧
+---------------------------------------------------------------------------------------------------------------- */
+div.page-pagelist {}
+div.page-pagelist div.form-box {
+	padding-bottom:5px;
+	border-bottom:#e5e5e5 solid 2px;
+	margin-bottom:10px;
+}
+div.page-pagelist div.form-box select {}
+div.page-pagelist div.form-box input {}
+
+div.page-pagelist div.paging-top {}
+div.page-pagelist div.paging-top p {}
+
+div.page-pagelist div.paging-bottom {
+	border-top:#e5e5e5 solid 2px;
+	padding-top:10px;
+}
+div.page-pagelist div.paging-bottom p {}
+
+ul.paging-list {}
+ul.paging-list li {}
+ul.paging-list li.prev {}
+
+ul.page-list {}
+ul.page-list li {}
+div.page-attachment ul.page-list li.odd {
+	
+}
+ul.page-list li.last {}
+ul.page-list li span {
+	color:#999;
+}
+ul.page-list li span img {}
+
+/* 検索一覧?タグ一覧
+---------------------------------------------------------------------------------------------------------------- */
+div.page-result {}
+div.page-result div.tagcloud {}
+
+div.result-box {}
+div.result-box p.title {}
+div.result-box p.title strong {}
+div.result-box div.paging-top {}
+div.result-box div.paging-bottom {}
+
+div.result-box div.body {
+	margin-bottom:20px;
+}
+div.result-box div.body h3.keyword {}
+div.result-box div.body p.text {
+	color:#666;
+}
+div.result-box div.body p.url {}
+
+/* 履歴
+     小見出し、リストはデフォルトではwikipageのカキコミエリアと同じものがでる。
+     ページ独自の指定がしたい場合はここで設定
+---------------------------------------------------------------------------------------------------------------- */
+div.page-history p {}
+div.page-history p.update {}
+div.page-history p.update img {}
+
+/* 復元ポイントリスト */
+div.page-history div#information-box {}
+div.page-history div#information-box div.title {}
+div.page-history div#information-box div.title h3 {
+	font-size:140%;
+	margin-bottom:5px;
+}
+div.page-history div#information-box ul.point-list {}
+div.page-history div#information-box ul.point-list li {}
+
+/* 履歴リスト */
+div.page-history div.user-area ul.history-list {}
+
+div.page-history div.user-area div.title-1 {}
+div.page-history div.user-area div.title-1 h3 {}
+div.page-history div.user-area ul.list-1 {}
+div.page-history div.user-area ul.list-1 li {}
+
+/* 差分
+---------------------------------------------------------------------------------------------------------------- */
+div.page-diff {}
+div.page-diff div.information-box {}
+div.page-diff div.information-box p {}
+div.page-diff div.information-box p.category {}
+
+/* 差分表示?追加 */
+div.page-diff .line-add {}
+/* 差分表示?削除 */
+div.page-diff .line-delete {}
+/* 差分表示?囲み */
+div.page-diff div.diff-box {
+	padding:10px;
+	
+	border:#ccc solid 1px;
+}
+
+/* 編集
+---------------------------------------------------------------------------------------------------------------- */
+div.page-edit {}
+div.page-edit div#page-header {
+	padding:15px 15px 10px;
+}
+div.page-edit div#page-header img {
+	vertical-align:middle;
+}
+
+
+
+div#main div.adsense-box {
+	padding:0px;
+	margin:0px;
+	border:# solid px;
+	
+	font-size:12px;
+	display:block!important;
+}
+div.sidecolumn div.adsense-box {
+	padding:0px;
+	margin:0px;
+	font-size:12px;
+	display:block!important;
+	
+}
+div.adsense-box {}
+div.adsense-box p {
+	text-align:left;
+	color:#000;
+	font-size:90%;
+	font-weight:;
+	line-height:90%;
+	padding:0px;
+	
+}
+div.adsense-box ul {
+	list-style:none;
+	margin:0;
+	padding:0;
+
+}
+div.adsense-box ul li {}
+div.adsense-box ul li a {
+	padding:px;
+
+}
+div.adsense-box ul li a:hover {
+
+}
+div#main div.adsense-box ul li a {
+
+}
+div#main div.adsense-box ul li a:hover {
+
+}
+div.adsense-box ul li span.ads-title {
+
+}
+div.adsense-box ul li span.ads-url {
+	color:#000000;
+	font-size:80%;
+
+}
+div.adsense-box ul li span.ads-text {
+
+	font-size:80%;
+}
+div.sidecolumn div.adsense-box ul li span.ads-url {
+	display:block;
+	margin:5px 0;
+}
+div.sidecolumn div.adsense-box ul li span.ads-text {
+
+}
