@@ -7,7 +7,7 @@ import me.liye.tekken.wiki.doamin.SkillEntry;
 /*
  * @author <a href="mailto:ye.liy@alibaba-inc.com">ye.liy</a>
  */
-public class CounterSkillExtracter extends BlockSkillExtracter {
+public class CounterSkillExtracter extends AbstractSkillExtracter {
 
     public static void main(String[] args) {
         new CounterSkillExtracter().process(new File("/Users/liye/Documents/tkwiki/tt2u"));

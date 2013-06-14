@@ -2,8 +2,10 @@ package me.liye.tekken.wiki;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -69,6 +71,8 @@ public class SavePage {
     Set<String>                 unknown           = new HashSet();
     // 模版
     String                      template;
+    // 版本
+    String                      version;
 
     boolean                     onlyIndex         = false;
     // 翻译表
@@ -80,6 +84,7 @@ public class SavePage {
         this.url = url;
         try {
             this.template = FileUtils.readFileToString(new File(template), encoding);
+            this.version = new SimpleDateFormat("yyyyMMdd").format(new Date());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -130,6 +135,7 @@ public class SavePage {
 
     private void write(File file, String content) {
         String cnt = template.replace("$$content$$", content);
+        cnt = cnt.replace("$$version$$", version);
         try {
             System.out.println("wirte " + file);
             FileUtils.write(file, cnt, encoding);

@@ -5,7 +5,7 @@ import java.io.File;
 /*
  * @author <a href="mailto:ye.liy@alibaba-inc.com">ye.liy</a>
  */
-public class SpecialSkillExtracter extends BlockSkillExtracter {
+public class SpecialSkillExtracter extends AbstractSkillExtracter {
 
     public static void main(String[] args) {
         new SpecialSkillExtracter().process(new File("/Users/liye/Documents/tkwiki/tt2u"));

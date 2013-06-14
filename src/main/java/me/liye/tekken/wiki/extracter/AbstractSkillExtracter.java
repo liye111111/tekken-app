@@ -23,7 +23,7 @@ import org.w3c.dom.Node;
 /*
  * @author <a href="mailto:ye.liy@alibaba-inc.com">ye.liy</a>
  */
-public abstract class BlockSkillExtracter implements Executor {
+public abstract class AbstractSkillExtracter implements Executor {
 
     List<SkillBlock> result = new ArrayList();
     String           charactor;

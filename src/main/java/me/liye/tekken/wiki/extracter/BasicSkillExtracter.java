@@ -5,10 +5,10 @@ import java.io.File;
 /*
  * @author <a href="mailto:ye.liy@alibaba-inc.com">ye.liy</a>
  */
-public class BasicSkillExtracter extends BlockSkillExtracter {
+public class BasicSkillExtracter extends AbstractSkillExtracter {
 
     public static void main(String[] args) {
-        new BasicSkillExtracter().process(new File("/Users/liye/Documents/tkwiki/tt2u"));
+        new BasicSkillExtracter().process(new File("/Users/liye/www/tkwiki/tt2u"));
     }
 
     @Override
