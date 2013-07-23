@@ -13,6 +13,7 @@ import me.liye.tekken.wiki.spider.NodeIterator;
 import me.liye.tekken.wiki.spider.NodeUtils;
 import me.liye.tekken.wiki.spider.Spider;
 import me.liye.tekken.wiki.spider.Spider.Executor;
+import me.liye.tekken.wiki.trans.Trans;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.NameFileFilter;
@@ -31,7 +32,7 @@ public abstract class AbstractSkillExtracter implements Executor {
 
     public void init() {
         try {
-            int count = TKDB.INSTANCE.update(getInitSql(), (String) null);
+            int count = TKDB.INSTANCE.update(getInitSql(), null);
             System.out.println("".format("delete %s %s ", getCategory(), count));
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -107,12 +108,12 @@ public abstract class AbstractSkillExtracter implements Executor {
                     SkillEntry sk = new SkillEntry();
                     sk.setCategory(category);
                     sk.setCharactor(charactor);
+                    sk.setDomContent(tr.getTextContent().trim());
                     for (int i = 0; i < tds.size(); i++) {
                         if (NodeUtils.isHave(tds.get(i), "xhtml:B")) {
                             sk.setIsNew("Y");
                         }
                         String txt = tds.get(i).getTextContent().trim();
-                        sk.setDomContent(txt);
                         sk.setGroup(blockName);
                         processTD(blockName, i, txt, sk);
                     }
@@ -131,6 +132,8 @@ public abstract class AbstractSkillExtracter implements Executor {
                 break;
             case 1:
                 sk.setCommand(txt);
+                String command_en = Trans.trans(txt);
+                sk.setCommand_en(command_en);
                 break;
             case 2:
                 sk.setJudge(txt);

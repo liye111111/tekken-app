@@ -5,6 +5,16 @@ package me.liye.tekken.wiki.doamin;
  */
 public class SkillEntry {
 
+    String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     String domContent;
 
     // 角色
@@ -19,6 +29,8 @@ public class SkillEntry {
     String name;
     // 指令
     String command;
+    // 指令美式
+    String command_en;
     // 判定
     String judge;
     // 伤害
@@ -98,6 +110,14 @@ public class SkillEntry {
         this.f_block = f_block;
     }
 
+    public String getCommand_en() {
+        return command_en;
+    }
+
+    public void setCommand_en(String command_en) {
+        this.command_en = command_en;
+    }
+
     public String getF_hit() {
         return f_hit;
     }
@@ -156,6 +176,45 @@ public class SkillEntry {
 
     public void setDistance(String distance) {
         this.distance = distance;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("SkillEntry [id=");
+        builder.append(id);
+        builder.append(", domContent=");
+        builder.append(domContent);
+        builder.append(", charactor=");
+        builder.append(charactor);
+        builder.append(", category=");
+        builder.append(category);
+        builder.append(", group=");
+        builder.append(group);
+        builder.append(", name=");
+        builder.append(name);
+        builder.append(", command=");
+        builder.append(command);
+        builder.append(", judge=");
+        builder.append(judge);
+        builder.append(", damage=");
+        builder.append(damage);
+        builder.append(", f_init=");
+        builder.append(f_init);
+        builder.append(", f_block=");
+        builder.append(f_block);
+        builder.append(", f_hit=");
+        builder.append(f_hit);
+        builder.append(", f_ch=");
+        builder.append(f_ch);
+        builder.append(", distance=");
+        builder.append(distance);
+        builder.append(", memo=");
+        builder.append(memo);
+        builder.append(", isNew=");
+        builder.append(isNew);
+        builder.append("]");
+        return builder.toString();
     }
 
 }

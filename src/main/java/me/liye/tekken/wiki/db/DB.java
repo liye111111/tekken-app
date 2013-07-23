@@ -94,8 +94,8 @@ public abstract class DB {
         for (int i = 0; i < columns.length; i++) {
             String col = columns[i];
             String upperCol = StringUtils.capitalize(col);
-            Method m = clz.getMethod("get" + upperCol, (Class<String>) null);
-            Object val = m.invoke(obj, (Class<String>) null);
+            Method m = clz.getMethod("get" + upperCol);
+            Object val = m.invoke(obj);
             vals[i] = val == null ? null : val.toString();
         }
 
@@ -113,7 +113,7 @@ public abstract class DB {
         return ct;
     }
 
-    public int update(String updateSql, String... updateParam) throws SQLException {
+    public int update(String updateSql, String[] updateParam) throws SQLException {
         PreparedStatement ps = conn.prepareStatement(updateSql);
         for (int i = 0; updateParam != null && i < updateParam.length; i++) {
             ps.setString(i + 1, updateParam[i]);
@@ -123,7 +123,7 @@ public abstract class DB {
         return ct;
     }
 
-    public List<Map<String, String>> select(String selectSql, String... queryParam) {
+    public List<Map<String, String>> select(String selectSql, String[] queryParam) {
         List<Map<String, String>> data = new ArrayList<Map<String, String>>();
         try {
             PreparedStatement ps = conn.prepareStatement(selectSql);

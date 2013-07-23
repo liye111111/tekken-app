@@ -13,7 +13,7 @@ public class SpecialSkillExtracter extends AbstractSkillExtracter {
 
     @Override
     public String getInitSql() {
-        return "delete from skill where category='special'";
+        return "delete from skill2 where category='special'";
     }
 
     @Override
