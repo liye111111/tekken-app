@@ -3,8 +3,13 @@ package me.liye.tekken.wiki.spider;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Properties;
 
 import javax.xml.namespace.NamespaceContext;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
@@ -122,6 +127,35 @@ public class Spider {
 
         public abstract void process(String txt, String href) throws Exception;
 
+    }
+
+    public static class SaveHtmlExcutor implements Executor {
+
+        File   outputFile;
+        String encoding;
+
+        public SaveHtmlExcutor(File outputFile, String encoding) {
+            super();
+            this.outputFile = outputFile;
+            this.encoding = encoding;
+        }
+
+        @Override
+        public void process(Node node, int index) throws Exception {
+            TransformerFactory tf = TransformerFactory.newInstance();
+            Transformer transformer = tf.newTransformer();
+            DOMSource source = new DOMSource(node);
+            java.io.FileOutputStream fos = new java.io.FileOutputStream(outputFile);
+            StreamResult result = new StreamResult(fos);
+            Properties props = new Properties();
+            props.setProperty("encoding", encoding);
+            props.setProperty("method", "html");
+            props.setProperty("omit-xml-declaration", "no");
+            transformer.setOutputProperties(props);
+            transformer.transform(source, result);
+            fos.flush();
+            fos.close();
+        }
     }
 
 }

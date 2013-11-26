@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title>
+            $!title
+        </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!--Bootstrap-->
+        <link href="/css/bootstrap.css" rel="stylesheet" media="screen">
+        <script src="/js/bootstrap.js"></script>
+        
+    </head>
+    
+    <body>

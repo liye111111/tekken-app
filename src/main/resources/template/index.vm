@@ -1,0 +1,11 @@
+#parse("template/head.vm")
+
+<div row-fluid>
+<ul class="thumbnails">
+#foreach($row in $data)
+<li class="span1"><div class="thumbnail"><a href="${row}/basic.htm" style="text-transform:capitalize"><img src="$!resPath/img/${row}.png">$row</a></div></li>
+#end
+</ul>
+</div>
+
+#parse("template/foot.vm")

@@ -1,16 +1,11 @@
 package me.liye.tekken.wiki.grab;
 
 import java.io.File;
-import java.util.Properties;
-
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 
 import me.liye.tekken.wiki.spider.Spider;
 import me.liye.tekken.wiki.spider.Spider.A;
 import me.liye.tekken.wiki.spider.Spider.Executor;
+import me.liye.tekken.wiki.spider.Spider.SaveHtmlExcutor;
 
 import org.apache.log4j.Logger;
 import org.w3c.dom.Node;
@@ -26,18 +21,22 @@ public class GrabPage {
         new GrabPage(indexUrl, new File(outputPath)).grab();
     }
 
-    private static final Logger log      = Logger.getLogger(GrabPage.class);
+    private static final Logger log          = Logger.getLogger(GrabPage.class);
 
     // 爬取内容输出路径
     File                        outputPath;
     // 爬取url
     String                      indexUrl;
-    String                      encoding = "UTF-8";
+    String                      encoding     = "UTF-8";
 
-    // 一级页面xpath
-    String                      XP_INDEX = "//*[@id=\"content_block_4\"]/TBODY/xhtml:TR/xhtml:TD/xhtml:A";
-    String                      XP_LV2   = "//*[@id=\"page-body-inner\"]/xhtml:DIV/xhtml:A";
-    String                      XP_LV3   = "//*[@id=\"page-body-inner\"]/xhtml:DIV[@class=\"user-area\"]";
+    // 一级页面xpath,角色
+    String                      XP_INDEX     = "//*[@id=\"content_block_4\"]/TBODY/xhtml:TR/xhtml:TD/xhtml:A";
+    // 二级页面，技能链接
+    String                      XP_LV2       = "//*[@id=\"page-body-inner\"]/xhtml:DIV/xhtml:A";
+    // 二级页面，技能首页
+    String                      XP_LV2_INDEX = "//*[@id=\"page-body-inner\"]/xhtml:DIV[@id=\"content_block_5\"]";
+    // 三级页面，技能内容
+    String                      XP_LV3       = "//*[@id=\"page-body-inner\"]/xhtml:DIV[@class=\"user-area\"]";
 
     public GrabPage(String indexUrl, File outputPath) {
         super();
@@ -69,6 +68,10 @@ public class GrabPage {
      */
     private void grabLv2(final File lv2Dir, String href) {
         lv2Dir.mkdirs();
+
+        // 抓取技能首页
+        new Spider(href, XP_LV2_INDEX).execute(new SaveHtmlExcutor(new File(lv2Dir, "index.htm"), encoding));
+
         // 抓取其它技能页面
         new Spider(href, XP_LV2).execute(new Executor() {
 
@@ -84,25 +87,6 @@ public class GrabPage {
     }
 
     private void grabLv3(final File lv3File, String href) {
-        new Spider(href, XP_LV3).execute(new Executor() {
-
-            @Override
-            public void process(Node node, int index) throws Exception {
-                TransformerFactory tf = TransformerFactory.newInstance();
-                Transformer transformer = tf.newTransformer();
-                DOMSource source = new DOMSource(node);
-                java.io.FileOutputStream fos = new java.io.FileOutputStream(lv3File);
-                StreamResult result = new StreamResult(fos);
-                Properties props = new Properties();
-                props.setProperty("encoding", encoding);
-                props.setProperty("method", "html");
-                props.setProperty("omit-xml-declaration", "no");
-                transformer.setOutputProperties(props);
-                transformer.transform(source, result);
-                fos.flush();
-                fos.close();
-            }
-        });
-
+        new Spider(href, XP_LV3).execute(new SaveHtmlExcutor(lv3File, encoding));
     }
 }
