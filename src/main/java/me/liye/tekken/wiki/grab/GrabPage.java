@@ -34,7 +34,7 @@ public class GrabPage {
     // 二级页面，技能链接
     String                      XP_LV2       = "//*[@id=\"page-body-inner\"]/xhtml:DIV/xhtml:A";
     // 二级页面，技能首页
-    String                      XP_LV2_INDEX = "//*[@id=\"page-body-inner\"]/xhtml:DIV[@id=\"content_block_5\"]";
+    String                      XP_LV2_INDEX = "//*[@id=\"content_block_5-body\"]";
     // 三级页面，技能内容
     String                      XP_LV3       = "//*[@id=\"page-body-inner\"]/xhtml:DIV[@class=\"user-area\"]";
 
@@ -70,7 +70,8 @@ public class GrabPage {
         lv2Dir.mkdirs();
 
         // 抓取技能首页
-        new Spider(href, XP_LV2_INDEX).execute(new SaveHtmlExcutor(new File(lv2Dir, "index.htm"), encoding));
+        File indexFile = new File(lv2Dir, "index.htm");
+        new Spider(href, XP_LV2_INDEX).execute(new SaveHtmlExcutor(indexFile, encoding));
 
         // 抓取其它技能页面
         new Spider(href, XP_LV2).execute(new Executor() {

@@ -16,6 +16,7 @@ import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
+import org.apache.log4j.Logger;
 import org.cyberneko.html.parsers.DOMParser;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -24,11 +25,13 @@ import org.xml.sax.SAXException;
 
 public class Spider {
 
-    String          url;
-    InputSource     is;
-    String          xpath;
-    XPathExpression expr;
-    Node            doc;
+    private static final Logger log = Logger.getLogger(Spider.class);
+
+    String                      url;
+    InputSource                 is;
+    String                      xpath;
+    XPathExpression             expr;
+    Node                        doc;
 
     public Spider(String url, String xpath) {
         this.url = url;
@@ -142,6 +145,7 @@ public class Spider {
 
         @Override
         public void process(Node node, int index) throws Exception {
+            log.info("write: " + outputFile);
             TransformerFactory tf = TransformerFactory.newInstance();
             Transformer transformer = tf.newTransformer();
             DOMSource source = new DOMSource(node);
