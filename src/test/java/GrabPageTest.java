@@ -11,8 +11,8 @@ public class GrabPageTest {
      * @param args
      */
     public static void main(String[] args) {
-        String url = "http://wiki.livedoor.jp/inatekken/d/%c1%ed%b9%e7TBR ~/www/wiki/br";
-        String path = "/tmp/www";
+        String url = "http://wiki.livedoor.jp/inatekken/d/%c1%ed%b9%e7TBR";
+        String path = "/tmp/www2";
         new GrabPage(url, new File(path)).grab();
     }
 

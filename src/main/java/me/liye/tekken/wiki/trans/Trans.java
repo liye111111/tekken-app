@@ -33,6 +33,9 @@ public class Trans {
 
     static List<Dictionary>     dictionarys;
     private static Set<String>  ignores;
+
+    static Map<String, String>  cache      = new HashMap();
+
     static {
         ignores = new HashSet();
         dictionarys = new ArrayList();
@@ -74,9 +77,15 @@ public class Trans {
     }
 
     public static String trans(String commandJp) {
-        List<Word> words = dnf(commandJp);
-        List<Word> enWords = transJp2En(words);
-        return joinWords(enWords);
+
+        String en = cache.get(commandJp);
+        if (en == null) {
+            List<Word> words = dnf(commandJp);
+            List<Word> enWords = transJp2En(words);
+            en = joinWords(enWords);
+            cache.put(commandJp, en);
+        }
+        return en;
     }
 
     private static String joinWords(List<Word> words) {

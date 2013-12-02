@@ -21,22 +21,24 @@ public class GrabPage {
         new GrabPage(indexUrl, new File(outputPath)).grab();
     }
 
-    private static final Logger log          = Logger.getLogger(GrabPage.class);
+    private static final Logger log                = Logger.getLogger(GrabPage.class);
 
     // 爬取内容输出路径
     File                        outputPath;
     // 爬取url
     String                      indexUrl;
-    String                      encoding     = "UTF-8";
+    String                      encoding           = "UTF-8";
 
     // 一级页面xpath,角色
-    String                      XP_INDEX     = "//*[@id=\"content_block_4\"]/TBODY/xhtml:TR/xhtml:TD/xhtml:A";
+    String                      XP_INDEX           = "//*[@id=\"content_block_4\"]/TBODY/xhtml:TR/xhtml:TD/xhtml:A";
     // 二级页面，技能链接
-    String                      XP_LV2       = "//*[@id=\"page-body-inner\"]/xhtml:DIV/xhtml:A";
+    String                      XP_LV2             = "//*[@id=\"page-body-inner\"]/xhtml:DIV/xhtml:A";
+    // 二级页面，性能简介
+    String                      XP_LV2_PERFORMANCE = "//*[@id=\"content_block_3\"]";
     // 二级页面，技能首页
-    String                      XP_LV2_INDEX = "//*[@id=\"content_block_5-body\"]";
+    String                      XP_LV2_INDEX       = "//*[@id=\"content_block_5-body\"]";
     // 三级页面，技能内容
-    String                      XP_LV3       = "//*[@id=\"page-body-inner\"]/xhtml:DIV[@class=\"user-area\"]";
+    String                      XP_LV3             = "//*[@id=\"page-body-inner\"]/xhtml:DIV[@class=\"user-area\"]";
 
     public GrabPage(String indexUrl, File outputPath) {
         super();
@@ -68,6 +70,10 @@ public class GrabPage {
      */
     private void grabLv2(final File lv2Dir, String href) {
         lv2Dir.mkdirs();
+
+        // 抓取性能
+        File performanceFile = new File(lv2Dir, "performance.htm");
+        new Spider(href, XP_LV2_PERFORMANCE).execute(new SaveHtmlExcutor(performanceFile, encoding));
 
         // 抓取技能首页
         File indexFile = new File(lv2Dir, "index.htm");
