@@ -1,0 +1,46 @@
+#direction
+1 ## db
+1h ## DB
+1〜 ## DB
+2 ## d
+2h ## D
+2〜 ## D
+3 ## df
+3h ## DF
+3〜 ## DF
+4 ## b
+44 ## bb
+4h ## B
+4〜 ## B
+44h ## BB
+44〜 ## BB
+6 ## f
+66 ## ff
+666 ## fff
+6h ## F
+6〜 ## F
+66〜 ## FF
+66h ## FF
+7 ## ub
+7h ## UB
+7! ## UB
+8 ## u
+8h ## U
+8〜 ## U
+9 ## uf
+9h ## UF
+9〜 ## UF
+6n23 ## cd
+236 ## qcf
+214 ## qcb
+41236 ## hcf
+63214 ## hcb
+74 ## ub,b
+8or2〜 ## U or D
+4or6〜 ## B or F
+4ホールド ## B
+1236 ## db,qcf
+
+
+
+

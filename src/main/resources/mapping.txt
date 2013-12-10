@@ -58,6 +58,7 @@ BT中 BT中
 CD2中 CD2中
 CD中 CD中
 CJ中 CJ中
+CJ CJ
 CW中 CW中
 DB中 DB中
 DE中 DE中

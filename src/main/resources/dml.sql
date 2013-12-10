@@ -1,10 +1,9 @@
 CREATE TABLE "skill" ("id" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , 
-"charactor" VARCHAR,
-"category" VARCHAR,
-"name" VARCHAR,
-"group" VARCHAR,
+"role" VARCHAR,
+"cate" VARCHAR,
+"cmdName" VARCHAR,
+"groupName" VARCHAR,
 "command" VARCHAR,
-"command_en" VARCHAR,
 "judge" VARCHAR,
 "damage" VARCHAR,
 "distance" VARCHAR,
@@ -13,8 +12,8 @@ CREATE TABLE "skill" ("id" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL ,
 "f_hit" VARCHAR,
 "f_ch" VARCHAR,
 "memo" VARCHAR,
-"isNew" VARCHAR
-, "domContent" VARCHAR)
+"isNew" VARCHAR, 
+"domContent" VARCHAR)
 
 
 CREATE TABLE "language" ("id" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "jp" VARCHAR NOT NULL  UNIQUE , "en" VARCHAR, "cn" VARCHAR)

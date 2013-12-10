@@ -1,0 +1,14 @@
+#direction
+db ## <img src="arrow_db"/>
+d ## <img src="arrow_d"/>
+df ## <img src="arrow_df"/>
+b ## <img src="arrow_b"/>
+f ## <img src="arrow_f"/>
+ub ## <img src="arrow_ub"/>
+u ## <img src="arrow_u"/>
+uf ## <img src="arrow_uf"/>
+cd  ## <img src="arrow_f"/><img src="arrow_d"/><img src="arrow_df"/>
+qcf  ## <img src="arrow_d"/><img src="arrow_df"/><img src="arrow_f"/>
+qcb  ## <img src="arrow_d"/><img src="arrow_db"/><img src="arrow_b"/>
+hcf  ## <img src="arrow_b"/><img src="arrow_db"/><img src="arrow_d"/><img src="arrow_df"/><img src="arrow_f"/>
+hcb ## <img src="arrow_f"/><img src="arrow_df"/><img src="arrow_d"/><img src="arrow_db"/><img src="arrow_b"/>

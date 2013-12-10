@@ -1,0 +1,39 @@
+#button
+LK ## 3
+LKh ## 3(hold)
+LP ## 1
+LPh ## 1(hold)
+RK ## 4
+RKh ## 4(hold)
+RK*4 ## 4444
+RP ## 2
+RPh ## 2(hold)
+WK ## 3+4
+WKh ## 3+4(hold)
+WKホールド ## 3+4(hold)
+WP ## 1+2
+WPh ## 1+2(hold)
+WPホールド ## 1+2(hold)
+WL ## 1+3
+WLh ## 1+3(hold)
+WR ## 2+4
+WRh ## 2+4(hold)
+LP+WK ## 1+2+3
+LP+RK ## 1+4
+RP+LK ## 2+3
+LPd ## 1(delay)
+RPd ## 2(delay)
+LKd ## 3(delay)
+RKd ## 4(delay)
+LPホールド ## 1(hold)
+RPホールド ## 2(hold)
+RKホールド ## 4(hold)
+LKホールド ## 3(hold)
+
+#n需要,分隔
+n ## N
+
+####
+#alisa
+CW中 ## WS3
+
