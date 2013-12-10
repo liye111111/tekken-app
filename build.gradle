@@ -16,6 +16,7 @@ dependencies {
    compile 'org.xerial:sqlite-jdbc:3.7.2'
    compile 'commons-lang:commons-lang:2.6'
    compile 'commons-io:commons-io:2.4'    
+   compile 'com.alibaba:fastjson:1.1.37'    
    testCompile 'junit:junit:4.7' 
 }
 
