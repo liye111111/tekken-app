@@ -10,6 +10,7 @@ import java.util.Map;
 
 import me.liye.tekken.wiki.Config;
 import me.liye.tekken.wiki.doamin.Language;
+import me.liye.tekken.wiki.doamin.Role;
 import me.liye.tekken.wiki.doamin.SkillEntry;
 
 import org.apache.commons.beanutils.PropertyUtils;
@@ -34,8 +35,8 @@ public class TKDB2 extends DB {
     public List<SkillEntry> listSkill(String table, String category, String charactor) {
         List<SkillEntry> result = new ArrayList();
         String sql = "select * from " + table + " where 1=1";
-        sql = category == null ? sql : sql + " and category=? ";
-        sql = charactor == null ? sql : sql + " and charactor=? ";
+        sql = category == null ? sql : sql + " and cate=? ";
+        sql = charactor == null ? sql : sql + " and role=? ";
         String[] param = null;
         if (category != null && charactor != null) {
             param = new String[] { category, charactor };
@@ -89,6 +90,8 @@ public class TKDB2 extends DB {
 
     public void insertSkillEntry(String table, SkillEntry sk) {
         try {
+            // ingore
+            sk.setDomContent(null);
             insertObject(table, sk);
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -97,8 +100,8 @@ public class TKDB2 extends DB {
 
     public int deleteSkill(String table, String charactor, String category) {
         String sql = "delete from " + table + " where 1=1";
-        sql = category == null ? sql : sql + " and category=? ";
-        sql = charactor == null ? sql : sql + " and charactor=? ";
+        sql = category == null ? sql : sql + " and cate=? ";
+        sql = charactor == null ? sql : sql + " and role=? ";
         try {
             return update(sql, new String[] { category, charactor });
         } catch (SQLException e) {
@@ -112,5 +115,21 @@ public class TKDB2 extends DB {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public List<Role> listRole(String table) {
+        String sql = "select * from language where en in (select distinct role  from " + table + " ) ORDER BY en asc";
+        List<Map<String, String>> records = select(sql, null);
+        List<Role> result = new ArrayList();
+        for (Map<String, String> line : records) {
+            Role role = new Role();
+            role.setCnName(line.get("cn"));
+            role.setJpName(line.get("jp"));
+            role.setEnName(line.get("en"));
+
+            result.add(role);
+        }
+        return result;
+
     }
 }

@@ -8,7 +8,6 @@ import me.liye.tekken.wiki.doamin.SkillEntry;
 import me.liye.tekken.wiki.spider.NodeIterator;
 import me.liye.tekken.wiki.spider.NodeUtils;
 import me.liye.tekken.wiki.spider.Spider.Executor;
-import me.liye.tekken.wiki.trans.Trans;
 
 import org.apache.commons.lang.StringUtils;
 import org.w3c.dom.Node;
@@ -16,7 +15,7 @@ import org.w3c.dom.Node;
 /*
  * @author <a href="mailto:ye.liy@alibaba-inc.com">ye.liy</a>
  */
-public class SkillPageExecutor implements Executor {
+public abstract class AbstractSkillPageExecutor implements Executor {
 
     String           blockName = "normal";
     SkillBlock       block;
@@ -25,7 +24,7 @@ public class SkillPageExecutor implements Executor {
     String           charactor;
     String           category;
 
-    public SkillPageExecutor(String charactor, String category) {
+    public AbstractSkillPageExecutor(String charactor, String category) {
         this.charactor = charactor;
         this.category = category;
     }
@@ -36,6 +35,8 @@ public class SkillPageExecutor implements Executor {
 
     @Override
     public void process(Node node, int index) throws Exception {
+        // 修正blockName
+        blockName = adjustBlockName(blockName, node);
         // 将一个大表格拆分为多个skillBlock
         // table
         NodeIterator ni = new NodeIterator(node);
@@ -60,16 +61,20 @@ public class SkillPageExecutor implements Executor {
                     // 数据行
                     List<Node> tds = NodeUtils.children(tr, "xhtml:TD");
                     SkillEntry sk = new SkillEntry();
-                    sk.setCategory(category);
-                    sk.setCharactor(charactor);
+                    sk.setCate(category);
+                    sk.setRole(charactor);
                     sk.setDomContent(tr.getTextContent().trim());
                     for (int i = 0; i < tds.size(); i++) {
                         if (NodeUtils.isHave(tds.get(i), "xhtml:B")) {
                             sk.setIsNew("Y");
                         }
                         String txt = tds.get(i).getTextContent().trim();
-                        sk.setGroup(blockName);
-                        processTD(blockName, i, txt, sk);
+                        sk.setGroupName(blockName);
+                        try {
+                            processTD(blockName, i, txt, sk);
+                        } catch (Exception e) {
+                            throw new RuntimeException(charactor + " : " + tr.getTextContent());
+                        }
                     }
 
                     block.getRows().add(sk);
@@ -79,40 +84,10 @@ public class SkillPageExecutor implements Executor {
 
     }
 
-    protected void processTD(String blockName, int index, String txt, SkillEntry sk) {
-        switch (index) {
-            case 0:
-                sk.setName(txt);
-                break;
-            case 1:
-                sk.setCommand(txt);
-                String command_en = Trans.trans(txt);
-                sk.setCommand_en(command_en);
-                break;
-            case 2:
-                sk.setJudge(txt);
-                break;
-            case 3:
-                sk.setDamage(txt);
-                break;
-            case 4:
-                sk.setF_init(txt);
-                break;
-            case 5:
-                sk.setF_block(txt);
-                break;
-            case 6:
-                sk.setF_hit(txt);
-                break;
-            case 7:
-                sk.setF_ch(txt);
-                break;
-            case 8:
-                sk.setMemo(txt);
-                break;
-            default:
-                throw new RuntimeException("".format("unknown cloumn:%s %s ", index, txt));
-        }
+    protected String adjustBlockName(String blockName, Node node) {
+        return blockName;
     }
+
+    protected abstract void processTD(String blockName, int index, String txt, SkillEntry sk);
 
 }

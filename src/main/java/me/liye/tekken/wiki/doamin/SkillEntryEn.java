@@ -3,7 +3,9 @@ package me.liye.tekken.wiki.doamin;
 /*
  * @author <a href="mailto:ye.liy@alibaba-inc.com">ye.liy</a>
  */
-public class SkillEntry {
+public class SkillEntryEn {
+
+    String command_jp;
 
     String id;
 
@@ -41,6 +43,14 @@ public class SkillEntry {
     String memo;
     // 新技
     String isNew;
+
+    public String getCommand_jp() {
+        return command_jp;
+    }
+
+    public void setCommand_jp(String command_jp) {
+        this.command_jp = command_jp;
+    }
 
     public String getId() {
         return id;

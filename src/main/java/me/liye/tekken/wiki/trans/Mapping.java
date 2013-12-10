@@ -7,8 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import me.liye.tekken.wiki.Config;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 
@@ -17,26 +15,39 @@ import org.apache.commons.lang.StringUtils;
  */
 public class Mapping {
 
-    static Map<String, String>       jp2en;
-    static Map<String, List<String>> type2words;
+    Map<String, String>       jp2en      = new HashMap();
+    Map<String, List<String>> type2words = new HashMap();
 
-    static {
-        jp2en = new HashMap();
-        type2words = new HashMap();
-        String file = Config.mappingFile;
+    public void addFile(File file) {
         try {
-            List<String> ln = FileUtils.readLines(new File(file));
+            List<String> ln = FileUtils.readLines(file);
             String type = "";
             for (String row : ln) {
+                if (row.trim().length() == 0) {
+                    continue;
+                }
                 if (row.startsWith("#")) {
                     type = StringUtils.substringAfterLast(row, "#");
                 } else {
 
-                    String[] ss = StringUtils.split(row);
-                    if (ss.length != 2) {
-                        throw new RuntimeException("wrong format in mapping: " + row);
+                    String[] ss = StringUtils.substringsBetween(row, "\"", "\"");
+                    if (ss != null) {
+                        if (ss.length == 1) {
+                            jp2en.put(ss[0], " ");
+                        } else {
+                            jp2en.put(ss[0], ss[1]);
+                        }
+                    } else {
+                        ss = StringUtils.split(row);
+                        if (ss.length < 1) {
+                            throw new RuntimeException("wrong mapping! " + row);
+                        }
+                        if (ss.length == 1) {
+                            jp2en.put(ss[0], " ");
+                        } else {
+                            jp2en.put(ss[0], ss[1]);
+                        }
                     }
-                    jp2en.put(ss[0], ss[1]);
                     // 该类型下的日式符号表
                     List<String> words = type2words.get(type);
                     if (words == null) {
@@ -51,21 +62,29 @@ public class Mapping {
         }
     }
 
-    public static String getEn(String jp) {
+    public String getEn(String jp) {
         String en = jp2en.get(jp);
         return en == null ? jp : en;
     }
 
-    public static List<String> getWords(String type) {
-        return type2words.get(type);
+    //
+    public List<String> getWords() {
+        List<String> rt = new ArrayList();
+        for (List ls : type2words.values()) {
+            rt.addAll(ls);
+        }
+        return rt;
     }
 
     /**
      * @param args
      */
     public static void main(String[] args) {
-        System.out.println(getEn("立ち途中"));
-        System.out.println(getWords("button"));
+        String[] left = StringUtils.substringsBetween("\"aaaa bbb\" \"aaaa bbb\"", "\"", "\"");
+        for (int i = 0; i < left.length; i++) {
+            System.out.println(left[i]);
+        }
+
     }
 
 }

@@ -59,4 +59,31 @@ public class NodeUtils {
         return children;
 
     }
+
+    /**
+     * 向前拼接node的text
+     * 
+     * @param node
+     * @param stopNodeName
+     * @param limit
+     * @return
+     */
+    public static String getPreviousSiblingTextContent(Node node, String stopNodeName, int limit) {
+        List<String> ls = new ArrayList();
+        ;
+        Node loopNode = node;
+        for (int i = 0; i < limit; i++) {
+            ls.add(loopNode.getTextContent());
+            loopNode = loopNode.getPreviousSibling();
+            if (loopNode == null || loopNode.getNodeName().equals(stopNodeName)) {
+                break;
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < ls.size(); i++) {
+            sb.append(ls.get(ls.size() - 1 - i));
+            sb.append(" ");
+        }
+        return sb.toString().trim();
+    }
 }

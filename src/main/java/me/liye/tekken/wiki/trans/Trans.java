@@ -1,6 +1,6 @@
 package me.liye.tekken.wiki.trans;
 
-import java.sql.SQLException;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -10,9 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import me.liye.tekken.wiki.db.TKDB;
-import me.liye.tekken.wiki.doamin.SkillEntry;
-
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
 /*
@@ -20,83 +18,109 @@ import org.apache.log4j.Logger;
  */
 public class Trans {
 
-    private static final Logger log        = Logger.getLogger(Trans.class);
-    static Dictionary           buttons    = new Dictionary(Word.TYPE_BUTTON,
-                                                            Mapping.getWords(Word.TYPE_BUTTON).toArray(new String[0]));
-    static Dictionary           directions = new Dictionary(
-                                                            Word.TYPE_DIRECTION,
-                                                            Mapping.getWords(Word.TYPE_DIRECTION).toArray(new String[0]));
-    static Dictionary           poses      = new Dictionary(Word.TYPE_POSE,
-                                                            Mapping.getWords(Word.TYPE_POSE).toArray(new String[0]));
-    static Dictionary           others     = new Dictionary(Word.TYPE_OTHER,
-                                                            Mapping.getWords(Word.TYPE_OTHER).toArray(new String[0]));
+    private static final Logger log     = Logger.getLogger(Trans.class);
 
-    static List<Dictionary>     dictionarys;
-    private static Set<String>  ignores;
+    Mapping                     mapping = new Mapping();
+    List<Dictionary>            dictionarys;
+    private Set<String>         ignores;
 
-    static Map<String, String>  cache      = new HashMap();
+    // static File f1 = new File("/Users/liye/mywork/tekken-app/src/main/resources/mapping.txt");
+    // static File f2 = new File("/Users/liye/mywork/tekken-app/src/main/resources/mapping_group.txt");
+
+    static Map<String, File>    f1      = new HashMap();
+    static Trans                t1;
 
     static {
-        ignores = new HashSet();
-        dictionarys = new ArrayList();
-        dictionarys.add(buttons);
-        dictionarys.add(directions);
-        dictionarys.add(poses);
-        dictionarys.add(others);
+        f1.put(Word.TYPE_BUTTON, new File("/Users/liye/mywork/tekken-app/src/main/resources/mapping_button.txt"));
+        f1.put(Word.TYPE_DIRECTION, new File("/Users/liye/mywork/tekken-app/src/main/resources/mapping_direction.txt"));
+        f1.put(Word.TYPE_POSE, new File("/Users/liye/mywork/tekken-app/src/main/resources/mapping_pose.txt"));
+        f1.put(Word.TYPE_OTHER, new File("/Users/liye/mywork/tekken-app/src/main/resources/mapping_other.txt"));
+        f1.put(Word.TYPE_GROUP, new File("/Users/liye/mywork/tekken-app/src/main/resources/mapping_group.txt"));
+        f1.put(Word.TYPE_COMBO, new File("/Users/liye/mywork/tekken-app/src/main/resources/mapping_combo.txt"));
 
+        t1 = new Trans(f1);
     }
 
-    /**
-     * @param args
-     */
-    public static void main(String[] args) {
-        try {
-            TKDB.INSTANCE.update("delete from skill_en", null);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        List<SkillEntry> rows = TKDB.INSTANCE.listSkill(null, null);
-        for (SkillEntry row : rows) {
-            String id = row.getId();
-            System.out.println(id);
-            String cmd = row.getCommand();
-            System.out.println(cmd);
-            List<Word> words = dnf(cmd);
-            System.out.println(words);
-            List<Word> enWords = transJp2En(words);
-            System.out.println(enWords);
+    // static Trans t2 = new Trans(f2);
 
-            SkillEntry sk = row;
-            String enCommand = joinWords(enWords);
-            sk.setCommand(enCommand);
-            System.out.println(enCommand);
-            TKDB.INSTANCE.insertSkillEntry(sk, "skill_en");
-        }
-        // System.out.println(dnf("1LP"));
-        System.err.println(ignores);
+    public static String transCommand(String cmdJp) {
+        return t1.trans(cmdJp);
     }
 
-    public static String trans(String commandJp) {
-
-        String en = cache.get(commandJp);
-        if (en == null) {
-            List<Word> words = dnf(commandJp);
-            List<Word> enWords = transJp2En(words);
-            en = joinWords(enWords);
-            cache.put(commandJp, en);
+    public static String transGroup(String groupJp) {
+        String en = t1.trans(groupJp);
+        en = en.trim();
+        if (en != null && en.length() > 1 && en.charAt(0) == '~') {
+            en = en.substring(1);
         }
         return en;
     }
 
-    private static String joinWords(List<Word> words) {
+    public static String transCombo(String comboJp) {
+        comboJp = comboJp.trim();
+        if (comboJp.startsWith("＞")) {
+            comboJp = comboJp.substring(1);
+        }
+
+        List<String> ls = new ArrayList();
+
+        String[] ss = StringUtils.split(comboJp, "＞");
+        for (String s : ss) {
+            String cmd = StringUtils.substringBetween(s, "(", ")");
+            if (StringUtils.isEmpty(cmd)) {
+                cmd = s;
+            }
+            ls.add(t1.trans(cmd));
+        }
+
+        return StringUtils.join(ls, ">");
+    }
+
+    public Trans(Map<String, File> files) {
+        dictionarys = new ArrayList();
+        ignores = new HashSet();
+        for (String type : files.keySet()) {
+            mapping.addFile(files.get(type));
+            Dictionary d1 = new Dictionary(type, mapping.getWords().toArray(new String[0]));
+
+            dictionarys.add(d1);
+        }
+
+        // Mapping mp2 = new Mapping();
+
+    }
+
+    public String trans(String commandJp) {
+        if (commandJp == null) {
+            return null;
+        }
+        List<Word> words = dnf(commandJp);
+        List<Word> enWords = transJp2En(words);
+        // 去掉翻译中引入的无效空格
+        return joinWords(enWords).trim();
+    }
+
+    private String joinWords(List<Word> words) {
         StringBuilder sb = new StringBuilder();
         Word preWord = null;
         for (Word w : words) {
-
+            if (w.getInput().trim().isEmpty()) {
+                continue;
+            }
             // 根据前一个word类型，决定是否加入空格
             if (preWord != null) {
                 String pt = preWord.getType();
                 String type = w.getType();
+                if (Word.TYPE_BUTTON.equals(pt) && !Word.TYPE_BUTTON.equals(type)) {
+                    if (!",".equals(w.getInput()) && !")".equals(w.getInput()) && !"]".equals(w.getInput())) {
+                        sb.append(" ");
+                    }
+                } else if (Word.TYPE_DIRECTION.equals(pt) && Word.TYPE_DIRECTION.equals(type)) {
+                    if (!"n".equals(w.getInput())) {
+                        sb.append("/");
+                    }
+                }
+
                 // if (w.getInput().equals("or")) {
                 // if (pt.equals(Word.TYPE_DIRECTION)) {
                 // sb.append(" ");
@@ -106,17 +130,19 @@ public class Trans {
                 // sb.append(" ");
                 // }
             }
-            sb.append(w.getInput());
+            if (!",".equals(w.getInput())) {
+                sb.append(w.getInput());
+            }
             preWord = w;
         }
-        return sb.toString();
+        return sb.toString().trim();
     }
 
-    private static List<Word> transJp2En(List<Word> words) {
+    private List<Word> transJp2En(List<Word> words) {
         List<Word> result = new ArrayList();
         for (Word w : words) {
             String in = w.getInput();
-            String out = Mapping.getEn(in);
+            String out = mapping.getEn(in);
             Word ow = new Word();
             ow.setInput(out);
             ow.setType(w.getType());
@@ -125,7 +151,7 @@ public class Trans {
         return result;
     }
 
-    private static List<Word> dnf(String cmd) {
+    private List<Word> dnf(String cmd) {
         // 忽略的子串
         StringBuilder ignore = new StringBuilder();
         List<Word> result = new ArrayList();
@@ -133,13 +159,18 @@ public class Trans {
             char c = cmd.charAt(i);
             String sub = cmd.substring(i);
             String type = null;
-            List<String> ls = null;
+            List<Word> ls = new ArrayList();
 
             for (Dictionary dict : dictionarys) {
                 type = dict.getType();
-                ls = dict.getKwMap().get(c);
-                if (ls != null) {
-                    break;
+                List<String> l = dict.getKwMap().get(c);
+                if (l != null) {
+                    for (String li : l) {
+                        Word w = new Word();
+                        w.setType(type);
+                        w.setInput(li);
+                        ls.add(w);
+                    }
                 }
             }
 
@@ -151,7 +182,7 @@ public class Trans {
                 ignore.append(c);
             } else {
 
-                int size = lookup(type, sub, ls, result);
+                int size = lookup(sub, ls, result);
                 if (size == 0) {
                     i++;
                     ignore.append(c);
@@ -168,15 +199,23 @@ public class Trans {
         return result;
     }
 
-    private static int lookup(String type, String sub, List<String> dict, List<Word> result) {
-        for (String btn : dict) {
-            if (sub.startsWith(btn)) {
+    private int lookup(String sub, List<Word> dicts, List<Word> result) {
+        Collections.sort(dicts, new Comparator<Word>() {
+
+            @Override
+            public int compare(Word o1, Word o2) {
+                return o2.getInput().length() - o1.getInput().length();
+            }
+        });
+
+        for (Word dict : dicts) {
+            if (sub.startsWith(dict.getInput())) {
                 // find input
-                Word w = new Word();
-                w.setType(type);
-                w.setInput(btn);
-                result.add(w);
-                return btn.length();
+                // Word w = new Word();
+                // w.setType(type);
+                // w.setInput(btn);
+                result.add(dict);
+                return dict.getInput().length();
             }
         }
         return 0;
@@ -249,6 +288,8 @@ public class Trans {
         public final static String TYPE_DIRECTION = "direction";
         public final static String TYPE_OTHER     = "other";
         public final static String TYPE_POSE      = "pose";
+        public final static String TYPE_GROUP     = "group";
+        public final static String TYPE_COMBO     = "combo";
         String                     type;
         String                     input;
 
