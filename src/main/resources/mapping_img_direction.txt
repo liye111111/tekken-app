@@ -1,4 +1,5 @@
 #direction
+N ## <img src="arrow_n"/>
 db ## <img src="arrow_db"/>
 d ## <img src="arrow_d"/>
 df ## <img src="arrow_df"/>
@@ -7,7 +8,15 @@ f ## <img src="arrow_f"/>
 ub ## <img src="arrow_ub"/>
 u ## <img src="arrow_u"/>
 uf ## <img src="arrow_uf"/>
-cd  ## <img src="arrow_f"/><img src="arrow_d"/><img src="arrow_df"/>
+DB ## <img src="arrow_db"/>
+D ## <img src="arrow_d"/>
+DF ## <img src="arrow_df"/>
+B ## <img src="arrow_b"/>
+F ## <img src="arrow_f"/>
+UB ## <img src="arrow_ub"/>
+U ## <img src="arrow_u"/>
+UF ## <img src="arrow_uf"/>
+cd  ## <img src="arrow_f"/><img src="arrow_n"/><img src="arrow_d"/><img src="arrow_df"/>
 qcf  ## <img src="arrow_d"/><img src="arrow_df"/><img src="arrow_f"/>
 qcb  ## <img src="arrow_d"/><img src="arrow_db"/><img src="arrow_b"/>
 hcf  ## <img src="arrow_b"/><img src="arrow_db"/><img src="arrow_d"/><img src="arrow_df"/><img src="arrow_f"/>

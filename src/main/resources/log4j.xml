@@ -9,6 +9,10 @@
 		</layout>
 	</appender>
 
+	<logger name="me.liye" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="console" />
+	</logger>
 	<root>
 		<priority value="info" />
 		<appender-ref ref="console" />
