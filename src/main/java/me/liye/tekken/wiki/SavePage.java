@@ -1,33 +1,23 @@
 package me.liye.tekken.wiki;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Set;
-
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-
 import me.liye.tekken.wiki.db.TKDB;
 import me.liye.tekken.wiki.doamin.Language;
 import me.liye.tekken.wiki.spider.Spider;
 import me.liye.tekken.wiki.spider.Spider.A;
 import me.liye.tekken.wiki.spider.Spider.Executor;
-
 import org.apache.commons.io.FileUtils;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * @author <a href="mailto:ye.liy@alibaba-inc.com">ye.liy</a>
@@ -39,9 +29,9 @@ public class SavePage {
      */
     public static void main(String[] args) {
         // String output = "/Users/liye/Documents/tkwiki/tt2u2";
-        String output = "/Users/liye/Documents/tkwiki/br2";
+        String output = "/Users/liye/Documents/tkwiki/fr";
         String template = "/Users/liye/Documents/tkwiki/index_template.htm";
-        // String url = "http://wiki.livedoor.jp/inatekken/d/%c1%ed%b9%e7TUD";
+        // String MAIN_URL = "http://wiki.livedoor.jp/inatekken/d/%c1%ed%b9%e7TUD";
         String url = "http://wiki.livedoor.jp/inatekken/d/%c1%ed%b9%e7TBR";
 
         SavePage sp = new SavePage(url, output, template);
@@ -57,7 +47,7 @@ public class SavePage {
     private static final String XP_SKILLCONTENT   = "//*[@id=\"page-body-inner\"]/xhtml:DIV[@class=\"user-area\"]";
 
     // File output = new File("/Users/liye/Documents/tkwiki/br");
-    // String url = "http://wiki.livedoor.jp/inatekken/d/%c1%ed%b9%e7TBR";
+    // String MAIN_URL = "http://wiki.livedoor.jp/inatekken/d/%c1%ed%b9%e7TBR";
 
     // 爬取内容输出路径
     File                        output;

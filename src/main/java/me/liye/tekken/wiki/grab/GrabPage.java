@@ -30,7 +30,8 @@ public class GrabPage {
     String                      encoding           = "UTF-8";
 
     // 一级页面xpath,角色
-    String                      XP_INDEX           = "//*[@id=\"content_block_4\"]/TBODY/xhtml:TR/xhtml:TD/xhtml:A";
+//    String                      XP_INDEX           = "//*[@id=\"content_block_4\"]/TBODY/xhtml:TR/xhtml:TD/xhtml:A";
+    String                      XP_INDEX           = "//*[@id=\"content_block_3\"]/TBODY/xhtml:TR/xhtml:TD/xhtml:A";
     // 二级页面，技能链接
     String                      XP_LV2             = "//*[@id=\"page-body-inner\"]/xhtml:DIV/xhtml:A";
     // 二级页面，性能简介

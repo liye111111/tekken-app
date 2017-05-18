@@ -1,0 +1,36 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Gradle : tekken-app.war">
+    <output-path>$PROJECT_DIR$/build/classes/artifacts/tekken-app</output-path>
+    <properties id="gradle-properties">
+      <options external-project-path="$PROJECT_DIR$" />
+    </properties>
+    <root id="archive" name="tekken-app.war">
+      <element id="javaee-facet-resources" facet="tekken-app_main/web/Web Gradle : tekken-app.war" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="tekken-app_main" />
+          <element id="dir-copy" path="$PROJECT_DIR$/build/resources/main" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Gradle: org.apache.httpcomponents:httpclient:4.2" />
+          <element id="library" level="project" name="Gradle: commons-beanutils:commons-beanutils:1.8.3" />
+          <element id="library" level="project" name="Gradle: commons-httpclient:commons-httpclient:3.1" />
+          <element id="library" level="project" name="Gradle: net.sourceforge.nekohtml:nekohtml:1.9.17" />
+          <element id="library" level="project" name="Gradle: log4j:log4j:1.2.17" />
+          <element id="library" level="project" name="Gradle: org.xerial:sqlite-jdbc:3.7.2" />
+          <element id="library" level="project" name="Gradle: commons-lang:commons-lang:2.6" />
+          <element id="library" level="project" name="Gradle: commons-io:commons-io:2.4" />
+          <element id="library" level="project" name="Gradle: com.alibaba:fastjson:1.1.37" />
+          <element id="library" level="project" name="Gradle: org.apache.httpcomponents:httpcore:4.2" />
+          <element id="library" level="project" name="Gradle: commons-logging:commons-logging:1.1.1" />
+          <element id="library" level="project" name="Gradle: commons-codec:commons-codec:1.6" />
+          <element id="library" level="project" name="Gradle: xerces:xercesImpl:2.9.1" />
+          <element id="library" level="project" name="Gradle: xml-apis:xml-apis:1.3.04" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/build/classes/artifacts/tekken-app/exploded/tekken-app.war/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>

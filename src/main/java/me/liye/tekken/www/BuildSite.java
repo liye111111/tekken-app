@@ -17,8 +17,8 @@ public class BuildSite {
      */
     public static void main(String[] args) throws Exception {
         BuildSite bs = new BuildSite();
-        // String url = "http://wiki.livedoor.jp/inatekken/d/%c1%ed%b9%e7TBR";
-        // bs.build("/Users/liye/www", "/Users/liye/mywork/tekken-app/src/main/resources/www", url, "br");
+        // String MAIN_URL = "http://wiki.livedoor.jp/inatekken/d/%c1%ed%b9%e7TBR";
+        // bs.build("/Users/liye/www", "/Users/liye/mywork/tekken-app/src/main/resources/www", MAIN_URL, "br");
         String url = "http://wiki.livedoor.jp/inatekken/d/%c1%ed%b9%e7TUD";
         bs.build("/Users/liye/www", "/Users/liye/mywork/tekken-app/src/main/resources/www", url, "tt2u");
     }

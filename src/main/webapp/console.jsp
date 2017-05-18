@@ -39,7 +39,7 @@ if(null!=action){
 
 String wwwDir = request.getParameter("wwwDir");
 String templateDir = request.getParameter("templateDir");
-String url = request.getParameter("url");
+String url = request.getParameter("MAIN_URL");
 String type = request.getParameter("type");
 
 BuildSite bs = new BuildSite();

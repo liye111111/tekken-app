@@ -6,4 +6,8 @@
   me.liye.tekken.wiki.grab.GrabPage
   翻译文件名
   me.liye.tekken.wiki.trans.TransFileName
-  
+
+
+  抓取图片
+https://eng.tekkenpedia.com/wiki/Tekken_7
+  sed -n 's/.*srcset="\([^"]*\).*/\1/p' pic | awk -F\  '{print "https://eng.tekkenpedia.com"$1}' |xargs wget {}
