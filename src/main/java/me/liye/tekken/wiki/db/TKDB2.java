@@ -1,5 +1,11 @@
 package me.liye.tekken.wiki.db;
 
+import me.liye.tekken.wiki.Config;
+import me.liye.tekken.wiki.doamin.Language;
+import me.liye.tekken.wiki.doamin.Role;
+import me.liye.tekken.wiki.doamin.SkillEntry;
+import org.apache.commons.beanutils.PropertyUtils;
+
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
@@ -7,13 +13,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import me.liye.tekken.wiki.Config;
-import me.liye.tekken.wiki.doamin.Language;
-import me.liye.tekken.wiki.doamin.Role;
-import me.liye.tekken.wiki.doamin.SkillEntry;
-
-import org.apache.commons.beanutils.PropertyUtils;
 
 /*
  * @author <a href="mailto:ye.liy@alibaba-inc.com">ye.liy</a>

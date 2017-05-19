@@ -19,6 +19,7 @@ public class Config {
     public static final String MAIN_URL = host + "%c1%ed%b9%e7TFR";
     public static final File tmp = new File(new File(System.getProperty("user.home"), "tmp"), "pagecache");
     public static final File out = new File(new File(System.getProperty("user.home"), "tmp"), "tk7fr");
+    public static final File out_trans = new File(new File(System.getProperty("user.home"), "tmp"), "tk7fr-trans");
     //
 
     //全部链接

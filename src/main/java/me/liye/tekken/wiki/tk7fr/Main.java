@@ -8,7 +8,8 @@ package me.liye.tekken.wiki.tk7fr;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-//        DownloadPages.main(args);
-        ParsePages.main(args);
+//        DownloadAllLink.main(args);
+        DownloadPage.main(args);
+        TransPage.main(args);
     }
 }
