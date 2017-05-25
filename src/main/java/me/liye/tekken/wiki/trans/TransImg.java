@@ -23,7 +23,7 @@ public class TransImg {
         TransImg ti = new TransImg("skill_tt2_en", "skill_tt2_xb");
         ti.process();
 
-        // System.out.println(ti.process(src));
+        // System.out_ori.println(ti.process(src));
     }
 
     Map<String, File> dictFiles = new HashMap();

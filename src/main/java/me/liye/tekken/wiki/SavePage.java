@@ -36,7 +36,7 @@ public class SavePage {
 
         SavePage sp = new SavePage(url, output, template);
         sp.execute();
-        // System.out.println(sp.unknown);
+        // System.out_ori.println(sp.unknown);
         for (String jp : sp.unknown) {
             System.out.println("".format("insert into language (jp,cn,en) values ('%s','','');", jp));
         }

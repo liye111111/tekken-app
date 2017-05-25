@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!--/*@thymesVar id="title" type="java.lang.String"*/-->
+
+
+
+    <title data-th-text="${title}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--Bootstrap-->
+    <link href="http://cdn.bootcss.com/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="alert alert-error">
+    杭州铁匠 NullPoint 制作
+    <br>微信&Email: ye.liy@qq.com
+</div>
+
+
+<div class="container-fluid">
+
+<ul class="thumbnails">
+    <!--/*@thymesVar id="players" type="java.util.List"*/-->
+    <li class="span3"  data-th-each="player : ${players}">
+        <a data-th-href="@{|${player}/index.html|}" style=\"text-transform:capitalize\" data-th-alt="@{${player}}">
+        <img style="height: 200px; display: block;" data-th-src="@{|../img/fr/T7FR${player}.png|}" />
+        <h3 align="center" data-th-text="${player}" />
+        </a>
+    </li>
+</ul>
+</div>
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1262001217'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s13.cnzz.com/stat.php%3Fid%3D1262001217%26show%3Dpic2' type='text/javascript'%3E%3C/script%3E"));</script>
+</body>
+</html>

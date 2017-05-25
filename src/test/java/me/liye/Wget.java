@@ -108,8 +108,8 @@ public class Wget {
            Node node = nodes.item(i);
             if (NodeUtils.isNotBlankNode(node)) {
 //                exec.process(nodes.item(i), i);
-//                System.out.println(nodes.item(i).getTextContent());
-//                System.out.println(node.getClass());
+//                System.out_ori.println(nodes.item(i).getTextContent());
+//                System.out_ori.println(node.getClass());
                 Node hrefNode = node.getAttributes().getNamedItem("href");
                 if(hrefNode!=null){
                     String href = hrefNode.getNodeValue();

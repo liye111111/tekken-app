@@ -29,7 +29,7 @@ public class TransIang {
         TransIang ti = new TransIang("skill_tt2", "skill_tt2_en");
         ti.process();
         // for (String s : src) {
-        // System.out.println(s + " = " + ti.process(s));
+        // System.out_ori.println(s + " = " + ti.process(s));
         // }
     }
 
@@ -54,7 +54,7 @@ public class TransIang {
             @Override
             public void handle(String ignore) {
                 ignores.add(ignore);
-                // System.out.println(ignore);
+                // System.out_ori.println(ignore);
             }
         }, new SepartorProvider() {
 
@@ -114,10 +114,10 @@ public class TransIang {
                 }
             }
 
-            // System.out.println(skill.getCommand());
+            // System.out_ori.println(skill.getCommand());
             String cmdEn = t.process(skill.getCommand());
 
-            // System.out.println(skill.getCommand());
+            // System.out_ori.println(skill.getCommand());
             // ////////////////////
             try {
                 SkillEntryEn enSkill = new SkillEntryEn();

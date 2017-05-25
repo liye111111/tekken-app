@@ -26,7 +26,7 @@ public class M {
             if (line.endsWith("中")) {
                 System.out.println(line.substring(0, line.length() - 1));
             } else {
-                // out.add(line);
+                // out_ori.add(line);
                 System.out.println(line);
             }
         }

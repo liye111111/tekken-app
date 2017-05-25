@@ -26,7 +26,7 @@ public class TransPage {
         Map<String, Language> lang= TKDB2.INSTANCE.getJpLanguageMap();
 
 
-        File source = Config.out;
+        File source = Config.out_ori;
         File dest = Config.out_trans;
 
         FileUtils.deleteDirectory(dest);
@@ -46,6 +46,7 @@ public class TransPage {
                 }
                 else {
                     String en = lang.get(jp).getEn();
+                    en = StringUtils.capitalize(en);
                     File enFile = new File(skillDest, en + ".html");
                     log.debug("dest:"+enFile.getName());
                     player.renameTo(enFile);

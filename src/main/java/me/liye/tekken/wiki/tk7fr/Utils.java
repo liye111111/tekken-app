@@ -2,6 +2,10 @@ package me.liye.tekken.wiki.tk7fr;
 
 import me.liye.tekken.wiki.spider.NodeUtils;
 import org.cyberneko.html.parsers.DOMParser;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.templatemode.TemplateMode;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -17,6 +21,9 @@ import javax.xml.xpath.XPathExpression;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -25,6 +32,13 @@ import java.util.Properties;
  * @author <a href="mailto:ye.liy@alibaba-inc.com">ye.liy</a>
  */
 public class Utils {
+
+    public static void main(String[] args) {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("title","TEKKEN 7 FATED RETRIBUTION");
+
+        mergeHtml("index.html",map);
+    }
 
     public static void parseDom(String content, XPathExpression xpath, ParseDomCallback parseDomCallback) throws Exception {
         //
@@ -64,5 +78,20 @@ public class Utils {
         baos.close();
 
         return new String(baos.toByteArray());
+    }
+
+
+    public static String mergeHtml(String template,Map<String,Object> contextMap){
+        TemplateEngine templateEngine = new TemplateEngine();
+        ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+        templateResolver.setTemplateMode(TemplateMode.HTML);
+        templateEngine.setTemplateResolver(templateResolver);
+        Context context = new Context(Locale.getDefault(),contextMap);
+
+
+
+        String content = templateEngine.process("template/thymeleaf/"+template, context);
+
+        return  content;
     }
 }

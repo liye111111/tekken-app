@@ -17,10 +17,14 @@ import java.io.File;
 public class Config {
     public static final String host = "http://seesaawiki.jp/w/inatekken/d/";
     public static final String MAIN_URL = host + "%c1%ed%b9%e7TFR";
-    public static final File tmp = new File(new File(System.getProperty("user.home"), "tmp"), "pagecache");
-    public static final File out = new File(new File(System.getProperty("user.home"), "tmp"), "tk7fr");
-    public static final File out_trans = new File(new File(System.getProperty("user.home"), "tmp"), "tk7fr-trans");
+    public static final File home = new File(System.getProperty("user.home"), "tmp");
+    public static final File tmp = new File(home, "pagecache");
+    public static final File out_ori = new File(home, "tk7fr");
+    public static final File out_trans = new File(home, "tk7fr-trans");
+    public static final File out_www = new File(home, "www/fr");
     //
+
+    public static final int PAGE_INDEX_COLUMN_SIZE = 8;
 
     //全部链接
     public static XPathExpression XPATH_A;

@@ -88,7 +88,7 @@ public class TransFileName {
             if (lan != null) {
                 String en = lan.getEn();
                 ens[i] = en;
-                // System.out.println(en);
+                // System.out_ori.println(en);
             } else {
                 // System.err.println(jps[i]);
                 transFail.add(jps[i]);

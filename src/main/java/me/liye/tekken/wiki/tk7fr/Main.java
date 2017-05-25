@@ -11,5 +11,6 @@ public class Main {
 //        DownloadAllLink.main(args);
         DownloadPage.main(args);
         TransPage.main(args);
+        BuildSite.main(args);
     }
 }

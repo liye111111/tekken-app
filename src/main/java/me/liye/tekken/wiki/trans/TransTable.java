@@ -40,10 +40,10 @@ public class TransTable {
                 }
             }
             // if ("catch".equals(skill.getCategory())) {
-            // System.out.println(skill.getCommand());
+            // System.out_ori.println(skill.getCommand());
             // }
 
-            // System.out.println(skill);
+            // System.out_ori.println(skill);
             String cmdEn = null;
             if (skill.getCate().equals("combo")) {
                 cmdEn = Trans.transCombo(skill.getCommand());

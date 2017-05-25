@@ -17,8 +17,8 @@ public class M1 {
         System.out.println(fs.length);
         for (Field f : fs) {
             System.out.println("".format("\"%s\" VARCHAR,", f.getName()));
-            // System.out.println(Modifier.isTransient(f.getModifiers()));
-            // System.out.print("".format("%s,", f.getName()));
+            // System.out_ori.println(Modifier.isTransient(f.getModifiers()));
+            // System.out_ori.print("".format("%s,", f.getName()));
         }
 
     }
